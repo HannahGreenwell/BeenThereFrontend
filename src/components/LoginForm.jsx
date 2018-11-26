@@ -23,7 +23,7 @@ class LoginForm extends Component {
     event.preventDefault();
     axios.post('http://localhost:3000/login',
       {
-        name: this.state.emailInput,
+        email: this.state.emailInput,
         password: this.state.passwordInput
       }
     )
