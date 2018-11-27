@@ -1,14 +1,14 @@
 import React from 'react';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
-import LoginForm from './components/LoginForm';
-import BeenThereMap from './components/BeenThereMap';
+import App from './App';
+import Login from './components/Login';
 
 const Routes = (
   <Router>
     <div>
-      <Route exact path="/login" component={LoginForm} />
-      <Route exact path="/beenthere/:id" component={BeenThereMap} />
+      <Route exact path="/" component={App} />
+      <Route exact path="/login" component={Login} />
     </div>
   </Router>
 );

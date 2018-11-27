@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class LoginForm extends Component {
+class Login extends Component {
   constructor() {
     super();
 
     this.state = {
       emailInput: '',
-      passwordInput: ''
+      passwordInput: '',
+      error: ''
     };
   }
 
@@ -21,18 +22,28 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/login',
+    axios.post('http://localhost:3000/user/signin',
       {
         email: this.state.emailInput,
         password: this.state.passwordInput
       }
     )
     .then(response => {
-      console.log('RESPONSE: ', response.data);
+      console.log('RESPONSE: ', response.data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+
+      // Store the JWT token in the browser's localStorage system
+      if('localStorage' in window) {
+        localStorage.setItem('authToken', response.data.token);
+      }
+
+      // 'Redirect' to the user's Been There map
+      this.props.history.push(`/`);
     })
     .catch( error => {
       // Need to display error message on page
-      console.dir(error.response.data);
+      console.dir(error.response.data.message);
+      this.setState({error: error.response.data.message});
     });
   }
 
@@ -50,4 +61,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default Login;
