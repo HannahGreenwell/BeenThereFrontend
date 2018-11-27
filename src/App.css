@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.material-icons {
+  font-size: 30px;
+}
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -22,7 +26,6 @@
 }
 
 .main-container {
-  background-color: pink;
   width: 100vw;
   height: 90vh;
   position: fixed;
@@ -30,14 +33,17 @@
 }
 
 .sideBar {
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 28vw;
-  height: 100vh;
+  background-color: rgba(255, 255, 255, 1);
+  width: 30vw;
+  height: 90vh;
   position: fixed;
-  top: 0;
+  top: 10vh;
   z-index: 1;
-  border: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+  border-right: solid 1px #CCC;
+  padding: 15px;
 
+  /* visibility: hidden; */
 }
 
 @keyframes App-logo-spin {

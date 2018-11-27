@@ -4,7 +4,10 @@ class SideBar extends Component {
   render() {
     return (
       <div className="sideBar">
-        Hey
+        <i className="material-icons">
+          pin_drop
+        </i>
+        <h2>Hey</h2>
       </div>
     );
   }

@@ -6,65 +6,64 @@ const API_KEY = process.env.REACT_APP_GOOGLE_MAPS;
 
 class BeenThereMap extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      mapData: [],
       currentLatLng: {
         lat: -33.870937,
         lng: 151.204588
       },
-      isMarkerShown: false
+      // isMarkerShown: false
     };
   }
 
-  componentDidMount() {
-    this.getGeoLocation();
-    this.fetchMapData();
-  }
+  // componentDidMount() {
+  //   this.getGeoLocation();
+  //   this.fetchMapData();
+  // }
 
-  // https://stackoverflow.com/questions/50766080/geolocation-in-react-use-react-google-maps
-  getGeoLocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( position => {
-        this.setState( prevState => ({
-          currentLatLng: {
-            ...prevState.currentLatLng,
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          },
-          isMarkerShown: true
-        }))
-      })
-    } else {
-      console.warn('Whoops an error occured');
-    }
-  }
+  // Get the user's current location and update state
+  // getGeoLocation = () => {
+  //   if(navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition( position => {
+  //       this.setState( prevState => ({
+  //         currentLatLng: {
+  //           ...prevState.currentLatLng,
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude
+  //         },
+  //         isMarkerShown: true
+  //       }))
+  //     })
+  //   } else {
+  //     console.warn('Whoops an error occured');
+  //   }
+  // }
 
-  fetchMapData() {
-    const url = `http://localhost:3000/user/beenthere`;
+  // fetchMapData() {
+  //   const url = `http://localhost:3000/user/beenthere`;
+  //
+  //   axios.get(url)
+  //   .then(response => {
+  //     console.log('DATA:', response);
+  //     this.setState({mapData: response.data})
+  //   })
+  //   .catch(console.warn);
+  // }
 
-    axios.get(url)
-    .then(response => {
-      console.log('DATA:', response);
-      this.setState({mapData: response.data})
-    })
-    .catch(console.warn);
-  }
-
-  handleMapClick(event) {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    console.log(lat, lng);
-  }
+  // handleMapClick(event) {
+  //   const lat = event.latLng.lat();
+  //   const lng = event.latLng.lng();
+  //   console.log(lat, lng);
+  // }
 
   handleMarkerClick() {
     console.log('clicked');
   }
 
-  handleInfoWindowClick() {
-    console.log('InfoWindow Clicked!');
+  handleInfoWindowClick(city, lat, lng) {
+    console.log('InfoWindow Clicked!', city, lat, lng);
   }
 
   render() {
@@ -75,22 +74,20 @@ class BeenThereMap extends Component {
         onClick={this.handleMapClick}
       >
       {
-        this.state.mapData.map(city => {
-          return (
-            city.pins.map(pin =>
-              <Marker
-                position={{lat: pin.lat, lng: pin.lng,}} key={`${pin.lat}${pin.lng}`}
-                onClick={this.handleMarkerClick}
-              >
-                <InfoWindow>
-                  <div onClick={this.handleInfoWindowClick}>
-                    {pin.name}
-                  </div>
-                </InfoWindow>
-              </Marker>
-            )
-          );
-        })
+        this.props.pins.map(pin =>
+          <Marker
+            position={{lat: pin.lat, lng: pin.lng,}}
+            key={`${pin.name}`}
+            onClick={this.handleMarkerClick}
+          >
+            <InfoWindow>
+              <div
+                onClick={() => this.handleInfoWindowClick(pin.city, pin.lat, pin.lng)}>
+                {pin.name}
+              </div>
+            </InfoWindow>
+          </Marker>
+        )
       }
       </GoogleMap>
     )));

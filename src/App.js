@@ -9,6 +9,13 @@ import SideBar from './components/SideBar';
 
 class App extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      pins: [],
+    };
+  }
 
   componentWillMount() {
     if('localStorage' in window) {
@@ -19,7 +26,20 @@ class App extends Component {
       } else {
         this.props.history.push('/login');
       }
+
+      this.fetchPins();
     }
+  }
+
+  fetchPins() {
+    const url = `http://localhost:3000/user/beenthere`;
+
+    axios.get(url)
+    .then(response => {
+      console.log('DATA:', response);
+      this.setState({pins: response.data})
+    })
+    .catch(console.warn);
   }
 
   render() {
@@ -28,7 +48,7 @@ class App extends Component {
         <Header />
         <div className="main-container">
           <SideBar />
-          <BeenThereMap />
+          <BeenThereMap pins={this.state.pins} />
         </div>
       </div>
     );
