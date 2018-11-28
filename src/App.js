@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       pins: [],
       selectedPin: {},
+      showInstructions: true,
+      showPinDetail: false,
     };
   }
 
@@ -47,12 +49,16 @@ class App extends Component {
     this.props.history.push('/login');
   }
 
-  handleInfoWindowClick(city, name) {
-    // console.log('App:', city, name);
+  handleMarkerClick(city, name) {
+    console.log('clicked', city, name);
     axios.get(`${URL}/pin/${city}/${name}`)
     .then(response => {
       console.log('PIN:', response);
-      this.setState({selectedPin: response.data});
+      this.setState({
+        selectedPin: response.data,
+        showInstructions: false,
+        showPinDetail: true
+      });
     })
     .catch(console.warn);
   }
@@ -61,11 +67,17 @@ class App extends Component {
     return (
       <div className="App">
         <Header onClick={() => this.handleSignOut()}/>
+
         <div className="main-container">
-          <SideBar pin={this.state.selectedPin} />
+          <SideBar
+            pin={this.state.selectedPin}
+            showInstructions={this.state.showInstructions}
+            showPinDetail={this.state.showPinDetail}
+          />
+
           <BeenThereMap
             pins={this.state.pins}
-            onClick={(city, name) => this.handleInfoWindowClick(city, name)}
+            onClick={(city, name) => this.handleMarkerClick(city, name)}
           />
         </div>
       </div>

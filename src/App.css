@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+body {
+  font-size: 14px;
+  line-height: 1.7em;
+}
+
 .material-icons {
   font-size: 30px;
 }
@@ -22,7 +27,8 @@
   position: fixed;
   z-index: 2;
   border-bottom: solid 1px #CCC;
-  padding: 15px;
+  padding-top: 25px;
+  padding-left: 20px;
 }
 
 .main-container {
@@ -32,7 +38,7 @@
   top: 10vh;
 }
 
-.sideBar {
+.sidebar {
   background-color: rgba(255, 255, 255, 1);
   width: 30vw;
   height: 90vh;
@@ -41,11 +47,19 @@
   z-index: 1;
   border-bottom: solid 1px #CCC;
   border-right: solid 1px #CCC;
-  padding: 15px;
+  padding: 20px;
 
   /* visibility: hidden; */
 }
 
+button {
+  background-color: white;
+  border: none;
+}
+
+input[type=text] {
+  padding: 5px 8px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

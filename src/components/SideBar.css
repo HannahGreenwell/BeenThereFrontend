@@ -1,0 +1,7 @@
+.open-close {
+  float: right;
+}
+
+.open-close:hover {
+  color: grey;
+}

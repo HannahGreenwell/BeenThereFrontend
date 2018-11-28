@@ -10,7 +10,7 @@ class Header extends Component {
         <h1>Been There</h1>
 
         <nav className="main-nav">
-          <ol>
+          <ul>
             <li><span className="yellow-bg">About</span></li>
             <li><span className="yellow-bg">Account</span></li>
             <li>
@@ -19,9 +19,9 @@ class Header extends Component {
               onClick={this.props.onClick}
               >
               Sign Out
-            </span>
-          </li>
-          </ol>
+              </span>
+            </li>
+          </ul>
         </nav>
       </div>
     );

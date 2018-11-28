@@ -45,10 +45,6 @@ class BeenThereMap extends Component {
   //   console.log(lat, lng);
   // }
 
-  handleMarkerClick() {
-    console.log('clicked');
-  }
-
   render() {
     const BeenThereMap = withScriptjs(withGoogleMap(props => (
       <GoogleMap
@@ -61,12 +57,10 @@ class BeenThereMap extends Component {
           <Marker
             position={{lat: pin.lat, lng: pin.lng,}}
             key={`${pin.name}`}
-            onClick={this.handleMarkerClick}
+            onClick={() => this.props.onClick(pin.city, pin.name)}
           >
             <InfoWindow>
-              <div
-                onClick={() => this.props.onClick(pin.city, pin.name)}
-              >
+              <div>
                 {pin.name}
               </div>
             </InfoWindow>
