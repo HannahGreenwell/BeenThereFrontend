@@ -39,11 +39,11 @@ class BeenThereMap extends Component {
   //   }
   // }
 
-  // handleMapClick(event) {
-  //   const lat = event.latLng.lat();
-  //   const lng = event.latLng.lng();
-  //   console.log(lat, lng);
-  // }
+  handleMapClick(event) {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    console.log(lat, lng);
+  }
 
   render() {
     const BeenThereMap = withScriptjs(withGoogleMap(props => (
