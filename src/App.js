@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 
 import Header from './components/Header';
-import BeenThereMap from './components/BeenThereMap';
+import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
 
 const URL = `http://localhost:3000/user`;
@@ -75,7 +75,7 @@ class App extends Component {
             showPinDetail={this.state.showPinDetail}
           />
 
-          <BeenThereMap
+        <MapContainer
             pins={this.state.pins}
             onClick={(city, name) => this.handleMarkerClick(city, name)}
           />

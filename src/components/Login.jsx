@@ -13,6 +13,7 @@ class Login extends Component {
   }
 
   handleEmailChange(event) {
+    console.log(event.target.value);
     this.setState({emailInput: event.target.value});
   }
 
@@ -52,8 +53,8 @@ class Login extends Component {
       <div>
         <h2>Login</h2>
         <form onSubmit={ev => this.handleSubmit(ev)}>
-          Email: <input type="text" onChange={ev => this.handleEmailChange(ev)} /><br />
-          Password: <input type="password" onChange={ev => this.handlePasswordChange(ev)} /><br />
+          Email: <input type="email" value={this.state.emailInput} onChange={ev => this.handleEmailChange(ev)} /><br />
+        Password: <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} /><br />
           <input type="submit" value="Login" /><br />
         </form>
       </div>
