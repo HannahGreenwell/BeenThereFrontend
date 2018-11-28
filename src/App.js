@@ -6,6 +6,7 @@ import Header from './components/Header';
 import BeenThereMap from './components/BeenThereMap';
 import SideBar from './components/SideBar';
 
+const URL = `http://localhost:3000/user`;
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
 
     this.state = {
       pins: [],
+      selectedPin: {},
     };
   }
 
@@ -32,12 +34,25 @@ class App extends Component {
   }
 
   fetchPins() {
-    const url = `http://localhost:3000/user/beenthere`;
-
-    axios.get(url)
+    axios.get(`${URL}/beenthere`)
     .then(response => {
-      console.log('DATA:', response);
-      this.setState({pins: response.data})
+      // console.log('PINS:', response);
+      this.setState({pins: response.data});
+    })
+    .catch(console.warn);
+  }
+
+  handleSignOut() {
+    localStorage.removeItem('authToken');
+    this.props.history.push('/login');
+  }
+
+  handleInfoWindowClick(city, name) {
+    // console.log('App:', city, name);
+    axios.get(`${URL}/pin/${city}/${name}`)
+    .then(response => {
+      console.log('PIN:', response);
+      this.setState({selectedPin: response.data});
     })
     .catch(console.warn);
   }
@@ -45,10 +60,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header onClick={() => this.handleSignOut()}/>
         <div className="main-container">
-          <SideBar />
-          <BeenThereMap pins={this.state.pins} />
+          <SideBar pin={this.state.selectedPin} />
+          <BeenThereMap
+            pins={this.state.pins}
+            onClick={(city, name) => this.handleInfoWindowClick(city, name)}
+          />
         </div>
       </div>
     );

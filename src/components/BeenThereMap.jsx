@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS;
@@ -20,7 +19,6 @@ class BeenThereMap extends Component {
 
   // componentDidMount() {
   //   this.getGeoLocation();
-  //   this.fetchMapData();
   // }
 
   // Get the user's current location and update state
@@ -41,17 +39,6 @@ class BeenThereMap extends Component {
   //   }
   // }
 
-  // fetchMapData() {
-  //   const url = `http://localhost:3000/user/beenthere`;
-  //
-  //   axios.get(url)
-  //   .then(response => {
-  //     console.log('DATA:', response);
-  //     this.setState({mapData: response.data})
-  //   })
-  //   .catch(console.warn);
-  // }
-
   // handleMapClick(event) {
   //   const lat = event.latLng.lat();
   //   const lng = event.latLng.lng();
@@ -60,10 +47,6 @@ class BeenThereMap extends Component {
 
   handleMarkerClick() {
     console.log('clicked');
-  }
-
-  handleInfoWindowClick(city, lat, lng) {
-    console.log('InfoWindow Clicked!', city, lat, lng);
   }
 
   render() {
@@ -82,7 +65,8 @@ class BeenThereMap extends Component {
           >
             <InfoWindow>
               <div
-                onClick={() => this.handleInfoWindowClick(pin.city, pin.lat, pin.lng)}>
+                onClick={() => this.props.onClick(pin.city, pin.name)}
+              >
                 {pin.name}
               </div>
             </InfoWindow>
