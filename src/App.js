@@ -69,7 +69,11 @@ class App extends Component {
       city
     })
     .then(response => {
-      console.log(response);
+      this.setState({
+        ///// NOT WORKING
+        pins: [...this.state.pins, response.data.pinToPush],
+        selectedPin: response.data.newPin
+      })
     })
     .catch(console.warn);
   }

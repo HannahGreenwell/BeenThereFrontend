@@ -51,15 +51,9 @@ class AddPlace extends Component {
 
     return (
       <div>
-        <ReactGoogleMapLoader
-          params={{
-            key: API_KEY,
-            libraries: 'places, geocode',
-          }}
-          render={googleMaps =>
-            googleMaps && (
+
               <ReactGooglePlacesSuggest
-                googleMaps={googleMaps}
+                googleMaps={window.google.maps}
                 autocompletionRequest={{
                   input: search,
                 }}
@@ -83,9 +77,7 @@ class AddPlace extends Component {
                   onFocus={() => this.handleFocus()}
                 />
               </ReactGooglePlacesSuggest>
-            )
-          }
-        />
+
 
         {
           showAddPlaceForm  &&

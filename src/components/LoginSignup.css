@@ -5,3 +5,19 @@
   width: 100vw;
   height: 100vh;
 }
+
+.login-box {
+  width: 300px;
+  height: 250px;
+  background-color: white;
+  border: solid 1px #CCC;
+  position: fixed;
+  top: 15vh;
+  left: 20px;
+  padding: 20px;
+}
+
+.error-msg {
+  color: red;
+  padding-top: 10px;
+}

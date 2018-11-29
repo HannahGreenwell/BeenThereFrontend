@@ -54,4 +54,4 @@ class BeenThereMap extends Component {
   }
 };
 
-export default withScriptjs(withGoogleMap(BeenThereMap));
+export default withGoogleMap(BeenThereMap);

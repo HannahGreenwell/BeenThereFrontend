@@ -4,7 +4,7 @@ import axios from 'axios';
 import HeaderProtected from './HeaderProtected';
 import './LoginSignup.css';
 
-class Login extends Component {
+class Signup extends Component {
   constructor() {
     super();
 
@@ -26,7 +26,7 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/user/signin',
+    axios.post('http://localhost:3000/user/signup',
       {
         email: this.state.emailInput,
         password: this.state.passwordInput
@@ -45,7 +45,6 @@ class Login extends Component {
       this.props.history.push(`/`);
     })
     .catch( error => {
-      // Need to display error message on page
       console.dir(error.response.data.message);
       this.setState({error: error.response.data.message});
     });
@@ -54,10 +53,10 @@ class Login extends Component {
   render() {
     return (
       <div className="login-container">
-        <HeaderProtected isLogin={true} />
+        <HeaderProtected isLogin={false} />
 
         <div className="login-box">
-          <h2>Login</h2>
+          <h2>Sign Up</h2>
 
           <form onSubmit={ev => this.handleSubmit(ev)}>
             <div>
@@ -70,7 +69,7 @@ class Login extends Component {
               <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} />
             </div>
 
-            <input type="submit" value="Login" />
+            <input type="submit" value="Sign Up" />
           </form>
 
           <p className="error-msg">{this.state.error}</p>
@@ -80,4 +79,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
