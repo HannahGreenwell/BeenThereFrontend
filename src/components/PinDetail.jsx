@@ -15,10 +15,10 @@ class PinDetail extends Component {
         pin.lat
         ?
         <div>
-          <h2>{pin.name}</h2>
-          <h3>{pin.category}</h3>
+          <h2><span className="yellow">{pin.name}</span></h2>
+          <p className="category">{pin.category}</p>
           <img src={pin.images}/>
-          <p>{pin.description}</p>
+          <p className="description">{pin.description}</p>
         </div>
         :
         <p>Click on a marker to see more information about the place.</p>

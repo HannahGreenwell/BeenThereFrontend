@@ -1,3 +1,17 @@
+.sidebar h3 {
+  margin: 10px 0;
+}
+
+.sidebar img {
+  width: 100%;
+  margin: 5px 0;
+  border: solid 1px #CCC;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
 .open-close {
   float: right;
 }
@@ -6,6 +20,10 @@
   color: grey;
 }
 
-/* .sidebar-add input[type=text] {
+.category {
+  font-weight: 700;
+}
 
-} */
+.description {
+  margin-bottom: 5px;
+}

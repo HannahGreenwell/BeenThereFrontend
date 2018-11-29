@@ -51,33 +51,31 @@ class AddPlace extends Component {
 
     return (
       <div>
-
-              <ReactGooglePlacesSuggest
-                googleMaps={window.google.maps}
-                autocompletionRequest={{
-                  input: search,
-                }}
-                onSelectSuggest={(geocodedPrediction, originalPrediction) => this.handleSelectSuggest(geocodedPrediction, originalPrediction)}
-                textNoResults="Sorry, place not found"
-                customRender={prediction => (
-                  <div className="customWrapper">
-                    {
-                      prediction
-                        ? prediction.description
-                        : "Sorry, place not found"
-                    }
-                  </div>
-                )}
-              >
-                <input
-                  type="text"
-                  value={value}
-                  placeholder="Search for a place"
-                  onChange={(event) => this.handleInputChange(event)}
-                  onFocus={() => this.handleFocus()}
-                />
-              </ReactGooglePlacesSuggest>
-
+        <ReactGooglePlacesSuggest
+          googleMaps={window.google.maps}
+          autocompletionRequest={{
+            input: search,
+          }}
+          onSelectSuggest={(geocodedPrediction, originalPrediction) => this.handleSelectSuggest(geocodedPrediction, originalPrediction)}
+          textNoResults="Sorry, place not found"
+          customRender={prediction => (
+            <div className="customWrapper">
+              {
+                prediction
+                  ? prediction.description
+                  : "Sorry, place not found"
+              }
+            </div>
+          )}
+        >
+          <input
+            type="text"
+            value={value}
+            placeholder="Search for a place"
+            onChange={(event) => this.handleInputChange(event)}
+            onFocus={() => this.handleFocus()}
+          />
+        </ReactGooglePlacesSuggest>
 
         {
           showAddPlaceForm  &&

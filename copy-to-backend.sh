@@ -2,8 +2,8 @@
 
 
 
-echo mv -v build/static/js/*.js ../been-there-backend/public/js/bundle.js
-mv -v build/static/js/*.js ../been-there-backend/public/js/bundle.js
+echo mv -v build/static/js/bundle.js ../been-there-backend/public/js/bundle.js
+mv -v build/static/js/bundle.js ../been-there-backend/public/js/bundle.js
 
 echo mv -v build/static/js/main.*.chunk.js ../been-there-backend/public/js/main.js
 mv -v build/static/js/main.*.chunk.js ../been-there-backend/public/js/main.js

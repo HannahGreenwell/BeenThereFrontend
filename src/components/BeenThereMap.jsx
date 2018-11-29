@@ -30,8 +30,8 @@ class BeenThereMap extends Component {
 
     return (
       <GoogleMap
-        defaultCenter={{lat: -33.870937, lng: 151.204588}}
-        defaultZoom={2.5}
+        defaultCenter={{lat: 22.375140, lng: 91.797224}}
+        defaultZoom={3}
         onClick={this.handleMapClick}
       >
       {

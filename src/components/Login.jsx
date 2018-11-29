@@ -15,6 +15,12 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    if(this.props.location.state) {
+      this.setState({error: this.props.location.state.message});
+    }
+  }
+
   handleEmailChange(event) {
     console.log(event.target.value);
     this.setState({emailInput: event.target.value});
