@@ -25,7 +25,7 @@ class AddPlaceForm extends Component {
       nameInput: name,
       latInput: lat,
       lngInput: lng,
-      cityInput: geocodedPrediction.address_components[2].long_name,
+      cityInput: geocodedPrediction.address_components[3].short_name,
     });
   }
 

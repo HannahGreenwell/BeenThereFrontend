@@ -42,7 +42,15 @@ class App extends Component {
     .then(response => {
       this.setState({pins: response.data});
     })
-    .catch(console.warn);
+    .catch(error => {
+      this.props.history.push({
+        pathname: '/login',
+        state: {
+          message: 'Please login again',
+          error
+        }
+      });
+    });
   }
 
   handleSignOut() {
