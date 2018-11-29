@@ -87,6 +87,36 @@ class SideBar extends Component {
               onSubmit={this.props.onSubmit} />
           }
         </div>
+
+        <div className="sidebar-filter-places">
+          <h3>
+            <span
+              className="yellow-bg"
+              onClick={() => this.handleFilterPlacesClick()}
+            >
+              Filter Places
+            </span>
+          </h3>
+          {
+            this.state.showFilterPlaces &&
+            <FilterPlaces />
+          }
+        </div>
+
+        <div className="sidebar-search-cities">
+          <h3>
+            <span
+              className="yellow-bg"
+              onClick={() => this.handleSearchCitiesClick()}
+            >
+              Search by City
+            </span>
+          </h3>
+          {
+            this.state.showSearchCities &&
+            <SearchCities />
+          }
+        </div>
       </div>
     );
   }

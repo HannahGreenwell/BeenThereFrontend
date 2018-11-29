@@ -29,7 +29,7 @@ class App extends Component {
       } else {
         this.props.history.push({
           pathname: '/login',
-          state: {message: 'Please login to access that page'}
+          // state: {message: 'Please login to access that page'}
         });
       }
 
