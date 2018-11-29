@@ -26,7 +26,10 @@ class App extends Component {
       if(jwt) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
       } else {
-        this.props.history.push('/login');
+        this.props.history.push({
+          pathname: '/login',
+          state: {message: 'Please login to access that page'}
+        });
       }
 
       this.fetchPins();

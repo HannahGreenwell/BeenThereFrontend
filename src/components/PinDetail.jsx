@@ -17,7 +17,7 @@ class PinDetail extends Component {
         <div>
           <h2>{pin.name}</h2>
           <h3>{pin.category}</h3>
-          <img src="http://www.fillmurray.com/300/200"/>
+          <img src={pin.images}/>
           <p>{pin.description}</p>
         </div>
         :
