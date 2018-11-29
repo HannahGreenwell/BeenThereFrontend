@@ -54,7 +54,7 @@ class SideBar extends Component {
             <span
               className="yellow-bg"
             >
-              Place Detail
+              Place Details
             </span>
           </h3>
           {
@@ -76,37 +76,7 @@ class SideBar extends Component {
           </h3>
           {
             this.state.showAddPlace &&
-            <AddPlace />
-          }
-        </div>
-
-        <div className="sidebar-filter-places">
-          <h3>
-            <span
-              className="yellow-bg"
-              onClick={() => this.handleFilterPlacesClick()}
-            >
-              Filter Places
-            </span>
-          </h3>
-          {
-            this.state.showFilterPlaces &&
-            <FilterPlaces />
-          }
-        </div>
-
-        <div className="sidebar-search-cities">
-          <h3>
-            <span
-              className="yellow-bg"
-              onClick={() => this.handleSearchCitiesClick()}
-            >
-              Search by City
-            </span>
-          </h3>
-          {
-            this.state.showSearchCities &&
-            <SearchCities />
+            <AddPlace onSubmit={this.props.onSubmit} />
           }
         </div>
       </div>
@@ -115,3 +85,33 @@ class SideBar extends Component {
 }
 
 export default SideBar;
+
+// <div className="sidebar-filter-places">
+//   <h3>
+//     <span
+//       className="yellow-bg"
+//       onClick={() => this.handleFilterPlacesClick()}
+//     >
+//       Filter Places
+//     </span>
+//   </h3>
+//   {
+//     this.state.showFilterPlaces &&
+//     <FilterPlaces />
+//   }
+// </div>
+//
+// <div className="sidebar-search-cities">
+//   <h3>
+//     <span
+//       className="yellow-bg"
+//       onClick={() => this.handleSearchCitiesClick()}
+//     >
+//       Search by City
+//     </span>
+//   </h3>
+//   {
+//     this.state.showSearchCities &&
+//     <SearchCities />
+//   }
+// </div>

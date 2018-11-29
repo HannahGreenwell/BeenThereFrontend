@@ -42,6 +42,10 @@ class AddPlace extends Component {
     });
   }
 
+  handleFocus() {
+    this.setState({showAddPlaceForm: false});
+  }
+
   render() {
     const {search, value, placeData, showAddPlaceForm} = this.state;
 
@@ -60,13 +64,13 @@ class AddPlace extends Component {
                   input: search,
                 }}
                 onSelectSuggest={(geocodedPrediction, originalPrediction) => this.handleSelectSuggest(geocodedPrediction, originalPrediction)}
-                textNoResults="My custom no results text"
+                textNoResults="Sorry, place not found"
                 customRender={prediction => (
                   <div className="customWrapper">
                     {
                       prediction
                         ? prediction.description
-                        : "My custom no results text"
+                        : "Sorry, place not found"
                     }
                   </div>
                 )}
@@ -76,13 +80,20 @@ class AddPlace extends Component {
                   value={value}
                   placeholder="Search for a place"
                   onChange={(event) => this.handleInputChange(event)}
+                  onFocus={() => this.handleFocus()}
                 />
               </ReactGooglePlacesSuggest>
             )
           }
         />
 
-      { showAddPlaceForm && <AddPlaceForm placeData={placeData} /> }
+        {
+          showAddPlaceForm  &&
+          <AddPlaceForm
+            placeData={placeData}
+            onSubmit={this.props.onSubmit}
+          />
+        }
       </div>
     );
   }

@@ -25,42 +25,59 @@ class AddPlaceForm extends Component {
       nameInput: name,
       latInput: lat,
       lngInput: lng,
-      cityInput: geocodedPrediction.address_components[1].long_name,
+      cityInput: geocodedPrediction.address_components[2].long_name,
     });
+  }
+
+  handleNameChange(event) {
+    this.setState({nameInput: event.target.value});
+  }
+
+  handleCategoryChange(event) {
+    this.setState({categoryInput: event.target.value});
+  }
+
+  handleDescriptionChange(event) {
+    this.setState({descriptionInput: event.target.value});
+  }
+
+  handleImageChange(event) {
+    this.setState({imageInput: event.target.value});
   }
 
   render() {
     const {nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput} = this.state;
 
     return (
-      <form>
+      <form
+        onSubmit={(event, name, category, description, image, lat, lng, city) => this.props.onSubmit(event, nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput)}>
         <div>
           <label>Name</label>
           <input
             type="text"
             value={nameInput}
-            onNameChange={(event) => this.handleNameChange(event)} />
+            onChange={(event) => this.handleNameChange(event)} />
         </div>
         <div>
           <label>Category</label>
           <input
             type="text"
             value={categoryInput}
-            onNameChange={(event) => this.handleCategoryChange(event)} />
+            onChange={(event) => this.handleCategoryChange(event)} />
         </div>
         <div>
           <label>Description</label>
           <input
             type="text"
             value={descriptionInput}
-            onNameChange={(event) => this.handleDescriptionChange(event)} />
+            onChange={(event) => this.handleDescriptionChange(event)} />
         </div>
         <div>
           <label>Image</label>
           <input
             type="text"
             value={imageInput}
-            onNameChange={(event) => this.handleImageChange(event)} />
+            onChange={(event) => this.handleImageChange(event)} />
         </div>
         <input type="submit" value="Add Place" />
 

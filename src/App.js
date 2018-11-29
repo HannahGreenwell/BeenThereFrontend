@@ -57,13 +57,33 @@ class App extends Component {
     .catch(console.warn);
   }
 
+  handleAddMarkerSubmit(ev, name, category, description, image, lat, lng, city) {
+    ev.preventDefault();
+    axios.post(`${URL}/pin`, {
+      name,
+      category,
+      description,
+      image,
+      lat,
+      lng,
+      city
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(console.warn);  
+  }
+
   render() {
     return (
       <div className="App">
         <Header onClick={() => this.handleSignOut()}/>
 
         <div className="main-container">
-          <SideBar pin={this.state.selectedPin} />
+          <SideBar
+            pin={this.state.selectedPin}
+            onSubmit={(ev, name, category, description, image, lat, lng, city) => this.handleAddMarkerSubmit(ev, name, category, description, image, lat, lng, city)}
+          />
 
           <MapContainer
             pins={this.state.pins}
