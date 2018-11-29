@@ -57,13 +57,13 @@ class App extends Component {
     .catch(console.warn);
   }
 
-  handleAddMarkerSubmit(ev, name, category, description, image, lat, lng, city) {
+  handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city) {
     ev.preventDefault();
     axios.post(`${URL}/pin`, {
       name,
       category,
       description,
-      image,
+      images,
       lat,
       lng,
       city
@@ -71,7 +71,7 @@ class App extends Component {
     .then(response => {
       console.log(response);
     })
-    .catch(console.warn);  
+    .catch(console.warn);
   }
 
   render() {
@@ -82,7 +82,7 @@ class App extends Component {
         <div className="main-container">
           <SideBar
             pin={this.state.selectedPin}
-            onSubmit={(ev, name, category, description, image, lat, lng, city) => this.handleAddMarkerSubmit(ev, name, category, description, image, lat, lng, city)}
+            onSubmit={(ev, name, category, description, images, lat, lng, city) => this.handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city)}
           />
 
           <MapContainer

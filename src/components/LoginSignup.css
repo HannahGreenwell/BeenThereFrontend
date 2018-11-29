@@ -1,0 +1,7 @@
+.login-container, .signup-container {
+  background-image: url("https://i.imgur.com/pBYpJ5G.png?1");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}

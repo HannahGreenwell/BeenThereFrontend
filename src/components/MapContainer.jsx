@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 import BeenThereMap from './BeenThereMap';
 
@@ -15,7 +14,6 @@ class MapContainer extends Component {
         lat: -33.870937,
         lng: 151.204588
       },
-      // isMarkerShown: false
     };
   }
 
@@ -39,12 +37,6 @@ class MapContainer extends Component {
   //   } else {
   //     console.warn('Whoops an error occured');
   //   }
-  // }
-
-  // handleMapClick(event) {
-  //   const lat = event.latLng.lat();
-  //   const lng = event.latLng.lng();
-  //   console.log(lat, lng);
   // }
 
   render() {

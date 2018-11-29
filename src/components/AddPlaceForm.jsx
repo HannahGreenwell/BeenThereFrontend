@@ -50,7 +50,7 @@ class AddPlaceForm extends Component {
 
     return (
       <form
-        onSubmit={(event, name, category, description, image, lat, lng, city) => this.props.onSubmit(event, nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput)}>
+        onSubmit={(event, name, category, description, images, lat, lng, city) => this.props.onSubmit(event, nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput)}>
         <div>
           <label>Name</label>
           <input

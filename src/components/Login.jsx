@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import Header from './Header';
+import './LoginSignup.css';
+
 class Login extends Component {
   constructor() {
     super();
@@ -50,13 +53,23 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Login</h2>
+      <div className="login-container">
+        <Header />
+
+        <div className="login">
+          <h2>Login</h2>
+
         <form onSubmit={ev => this.handleSubmit(ev)}>
-          Email: <input type="email" value={this.state.emailInput} onChange={ev => this.handleEmailChange(ev)} /><br />
-        Password: <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} /><br />
-          <input type="submit" value="Login" /><br />
-        </form>
+          <div>
+            <label>Email</label>
+            <input type="email" value={this.state.emailInput} onChange={ev => this.handleEmailChange(ev)} />
+          </div>
+           
+          Password: <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} /><br />
+            <input type="submit" value="Login" /><br />
+          </form>
+
+        </div>
       </div>
     );
   }
