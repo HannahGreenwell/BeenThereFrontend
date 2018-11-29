@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 
-import Instructions from './Instructions'
 import PinDetail from './PinDetail'
+import AddPlace from './AddPlace'
+import FilterPlaces from './FilterPlaces'
+import SearchCities from './SearchCities'
+import GoogleSuggest from './GoogleSuggest'
 
 import './SideBar.css';
 
@@ -10,12 +13,20 @@ class SideBar extends Component {
     super(props);
 
     this.state = {
-      showSideBar: true
+      showSideBar: true,
+      showPinDetail: true,
+      showAddPlace: false,
+      showFilterPlaces: false,
+      showSearchCities: false,
     };
   }
 
   handleClick() {
     console.log('clicked');
+  }
+
+  handleAddPlaceClick() {
+    this.setState({showAddPlace: true});
   }
 
   render() {
@@ -28,27 +39,67 @@ class SideBar extends Component {
             onClick={this.handleClick}
             className="open-close"
           >
-            <i className="material-icons">
-            close
-            </i>
+            <i className="material-icons">close</i>
           </button>
         </div>
 
-        {this.props.showInstructions && <Instructions />}
-        {
-          this.props.showPinDetail &&
-          <PinDetail
-            pin={this.props.pin}
-          />
-        }
+        <div className="sidebar-place-detail">
+          <h3>
+            <span
+              className="yellow-bg"
+            >
+              Place Detail
+            </span>
+          </h3>
+          {
+            this.state.showPinDetail &&
+            <PinDetail
+              pin={this.props.pin}
+            />
+          }
+        </div>
 
-        <div className="sidebar-footer">
-          <h3>Filter</h3>
+        <div className="sidebar-add-place">
+          <h3>
+            <span
+              className="yellow-bg"
+              onClick={this.handleAddPlaceClick}
+            >
+              Add New Place
+            </span>
+          </h3>
+          {
+            this.state.showAddPlace &&
+            <AddPlace />
+          }
+        </div>
 
-          <form>
-            <h3>Search</h3>
-            <input type="text" placeholder="e.g. Sydney" />
-          </form>
+        <div className="sidebar-filter-places">
+          <h3>
+            <span
+              className="yellow-bg"
+            >
+              Filter Places
+            </span>
+          </h3>
+          {
+            this.state.showFilterPlaces &&
+            <FilterPlaces />
+          }
+        </div>
+
+        <div className="sidebar-search-cities">
+          <h3>
+            <span
+              className="yellow-bg"
+            >
+              Search by City
+            </span>
+          </h3>
+          {
+            this.state.showSearchCities &&
+            <SearchCities />
+          }
         </div>
       </div>
     );

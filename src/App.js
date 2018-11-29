@@ -16,8 +16,6 @@ class App extends Component {
     this.state = {
       pins: [],
       selectedPin: {},
-      showInstructions: true,
-      showPinDetail: false,
     };
   }
 
@@ -38,7 +36,6 @@ class App extends Component {
   fetchPins() {
     axios.get(`${URL}/beenthere`)
     .then(response => {
-      // console.log('PINS:', response);
       this.setState({pins: response.data});
     })
     .catch(console.warn);
@@ -50,14 +47,11 @@ class App extends Component {
   }
 
   handleMarkerClick(city, name) {
-    console.log('clicked', city, name);
     axios.get(`${URL}/pin/${city}/${name}`)
     .then(response => {
       console.log('PIN:', response);
       this.setState({
         selectedPin: response.data,
-        showInstructions: false,
-        showPinDetail: true
       });
     })
     .catch(console.warn);
@@ -69,13 +63,9 @@ class App extends Component {
         <Header onClick={() => this.handleSignOut()}/>
 
         <div className="main-container">
-          <SideBar
-            pin={this.state.selectedPin}
-            showInstructions={this.state.showInstructions}
-            showPinDetail={this.state.showPinDetail}
-          />
+          <SideBar pin={this.state.selectedPin} />
 
-        <MapContainer
+          <MapContainer
             pins={this.state.pins}
             onClick={(city, name) => this.handleMarkerClick(city, name)}
           />
