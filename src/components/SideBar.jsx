@@ -20,6 +20,12 @@ class SideBar extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.pinAdded !== prevProps.pinAdded) {
+      this.setState({showAddPlace: false});
+    }
+  }
+
   handleClick() {
     console.log('clicked');
   }
@@ -76,7 +82,9 @@ class SideBar extends Component {
           </h3>
           {
             this.state.showAddPlace &&
-            <AddPlace onSubmit={this.props.onSubmit} />
+            <AddPlace
+              pinAdded={this.props.pinAdded}
+              onSubmit={this.props.onSubmit} />
           }
         </div>
       </div>

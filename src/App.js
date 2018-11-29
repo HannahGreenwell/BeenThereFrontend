@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       pins: [],
       selectedPin: {},
+      wasPinAdded: false,
     };
   }
 
@@ -73,9 +74,9 @@ class App extends Component {
     })
     .then(response => {
       this.setState({
-        ///// NOT WORKING
         pins: [...this.state.pins, response.data.pinToPush],
-        selectedPin: response.data.newPin
+        selectedPin: response.data.newPin,
+        wasPinAdded: true,
       })
     })
     .catch(console.warn);
@@ -89,6 +90,7 @@ class App extends Component {
         <div className="main-container">
           <SideBar
             pin={this.state.selectedPin}
+            pinAdded={this.state.wasPinAdded}
             onSubmit={(ev, name, category, description, images, lat, lng, city) => this.handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city)}
           />
 
