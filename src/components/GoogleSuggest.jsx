@@ -7,26 +7,11 @@ const API_KEY = process.env.REACT_APP_GOOGLE_MAPS;
 class GoogleSuggest extends Component {
   constructor() {
     super();
-
-    this.state = {
-      search: '',
-      value: '',
-      placeData: {
-        geocodedPrediction: {},
-        originalPrediction: {},
-      },
-    };
   }
 
-  handleInputChange = event => {
-    console.log(event.target.value);
-    this.setState({
-      search: event.target.value,
-      value: event.target.value
-    });
-  }
 
-  handleSelectSuggest = (geocodedPrediction, originalPrediction) => {
+
+  handleSelectSuggest(geocodedPrediction, originalPrediction) {
     console.log('SELECTED:', geocodedPrediction, originalPrediction);
     this.setState({
       search: '',
@@ -39,7 +24,7 @@ class GoogleSuggest extends Component {
   }
 
   render() {
-    const {search, value} = this.state;
+    const {search, value} = this.props;
 
     return (
       <ReactGoogleMapLoader
@@ -54,7 +39,7 @@ class GoogleSuggest extends Component {
               autocompletionRequest={{
                 input: search,
               }}
-              onSelectSuggest={this.handleSelectSuggest}
+              onSelectSuggest={(geocodedPrediction, originalPrediction) => this.handleSelectSuggest(geocodedPrediction, originalPrediction)}
               textNoResults="My custom no results text"
               customRender={prediction => (
                 <div className="customWrapper">
@@ -68,9 +53,8 @@ class GoogleSuggest extends Component {
             >
               <input
                 type="text"
-                value={value}
                 placeholder="Search for a place"
-                onChange={this.handleInputChange}
+                onChange={this.props.handleInputChange}
               />
             </ReactGooglePlacesSuggest>
           )

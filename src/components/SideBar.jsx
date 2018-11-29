@@ -4,7 +4,6 @@ import PinDetail from './PinDetail'
 import AddPlace from './AddPlace'
 import FilterPlaces from './FilterPlaces'
 import SearchCities from './SearchCities'
-import GoogleSuggest from './GoogleSuggest'
 
 import './SideBar.css';
 
@@ -29,6 +28,13 @@ class SideBar extends Component {
     this.setState({showAddPlace: true});
   }
 
+  handleFilterPlacesClick() {
+    this.setState({showFilterPlaces: true});
+  }
+  handleSearchCitiesClick() {
+    this.setState({showSearchCities: true});
+  }
+
   render() {
     return (
       <div className="sidebar">
@@ -36,7 +42,7 @@ class SideBar extends Component {
         <div className="sidebar-header">
           <i className="material-icons">pin_drop</i>
           <button
-            onClick={this.handleClick}
+            onClick={() => this.handleClick()}
             className="open-close"
           >
             <i className="material-icons">close</i>
@@ -63,7 +69,7 @@ class SideBar extends Component {
           <h3>
             <span
               className="yellow-bg"
-              onClick={this.handleAddPlaceClick}
+              onClick={() => this.handleAddPlaceClick()}
             >
               Add New Place
             </span>
@@ -78,6 +84,7 @@ class SideBar extends Component {
           <h3>
             <span
               className="yellow-bg"
+              onClick={() => this.handleFilterPlacesClick()}
             >
               Filter Places
             </span>
@@ -92,6 +99,7 @@ class SideBar extends Component {
           <h3>
             <span
               className="yellow-bg"
+              onClick={() => this.handleSearchCitiesClick()}
             >
               Search by City
             </span>
