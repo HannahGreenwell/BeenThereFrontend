@@ -4,6 +4,9 @@ import axios from 'axios';
 import HeaderProtected from './HeaderProtected';
 import './LoginSignup.css';
 
+const URL = '/user';
+// const URL = 'http://www.localhost:3000/user';
+
 class Signup extends Component {
   constructor() {
     super();
@@ -25,7 +28,7 @@ class Signup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('/user/signup',
+    axios.post(`${URL}/signup`,
       {
         email: this.state.emailInput,
         password: this.state.passwordInput
@@ -49,10 +52,15 @@ class Signup extends Component {
     });
   }
 
+  handleLoginClick(event) {
+    event.preventDefault();
+    this.props.history.push(`/login`);
+  }
+
   render() {
     return (
       <div className="login-container">
-        <HeaderProtected isLogin={false} />
+        <HeaderProtected onClick={ev => this.handleLoginClick(ev)} />
 
         <div className="login-box">
           <h2>Sign Up</h2>

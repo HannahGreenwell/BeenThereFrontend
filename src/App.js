@@ -7,6 +7,7 @@ import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
 
 const URL = '/user';
+// const URL = 'http://www.localhost:3000/user';
 
 class App extends Component {
 

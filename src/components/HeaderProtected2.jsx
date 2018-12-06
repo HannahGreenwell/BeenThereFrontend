@@ -3,6 +3,20 @@ import React, {Component} from 'react';
 import './Header.css';
 
 class HeaderProtected extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLogin: true,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      isLogin: this.props.isLogin
+    });
+  }
+
   render() {
     return (
       <div className="header">
@@ -13,17 +27,10 @@ class HeaderProtected extends Component {
             <li>
               <span
               className="yellow-bg"
-              onClick={this.props.onClick}
               >
-              Login
-              </span>
-            </li>
-            <li>
-              <span
-              className="yellow-bg"
-              onClick={this.props.onClick}
-              >
-              Sign Up
+                {
+                  this.state.isLogin ? "Sign Up" : "Login"
+                }
               </span>
             </li>
           </ul>
