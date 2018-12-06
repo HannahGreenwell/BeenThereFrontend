@@ -6,7 +6,7 @@ import Header from './components/Header';
 import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
 
-const URL = `http://localhost:3000/user`;
+const URL = '/user';
 
 class App extends Component {
 
@@ -43,12 +43,9 @@ class App extends Component {
       this.setState({pins: response.data});
     })
     .catch(error => {
-      // this.props.history.push({
-      //   pathname: '/login',
-      //   state: {
-      //     message: 'Please login again.',
-      //     error
-      //   }
+      this.props.history.push({
+        pathname: '/login',
+        state: {error}
       console.warn(error);
     });
   }

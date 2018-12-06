@@ -25,7 +25,7 @@ class Signup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('http://localhost:3000/user/signup',
+    axios.post('/user/signup',
       {
         email: this.state.emailInput,
         password: this.state.passwordInput
