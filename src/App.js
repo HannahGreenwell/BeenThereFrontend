@@ -45,8 +45,8 @@ class App extends Component {
     .catch(error => {
       this.props.history.push({
         pathname: '/login',
-        state: {error}
-      console.warn(error);
+        // state: {message: 'Please login to access that page'}
+      });
     });
   }
 
