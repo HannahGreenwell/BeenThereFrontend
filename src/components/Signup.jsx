@@ -16,7 +16,6 @@ class Signup extends Component {
   }
 
   handleEmailChange(event) {
-    console.log(event.target.value);
     this.setState({emailInput: event.target.value});
   }
 
@@ -33,7 +32,7 @@ class Signup extends Component {
       }
     )
     .then(response => {
-      console.log('RESPONSE: ', response.data.token);
+      console.log('RESPONSE: ', response.data);
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
       // Store the JWT token in the browser's localStorage system

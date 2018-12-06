@@ -22,7 +22,6 @@ class Login extends Component {
   }
 
   handleEmailChange(event) {
-    console.log(event.target.value);
     this.setState({emailInput: event.target.value});
   }
 

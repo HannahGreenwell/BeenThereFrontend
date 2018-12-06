@@ -43,13 +43,13 @@ class App extends Component {
       this.setState({pins: response.data});
     })
     .catch(error => {
-      this.props.history.push({
-        pathname: '/login',
-        state: {
-          message: 'Please login again',
-          error
-        }
-      });
+      // this.props.history.push({
+      //   pathname: '/login',
+      //   state: {
+      //     message: 'Please login again.',
+      //     error
+      //   }
+      console.warn(error);
     });
   }
 

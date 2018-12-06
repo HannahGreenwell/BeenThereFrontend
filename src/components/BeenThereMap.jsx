@@ -3,28 +3,6 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-
 
 class BeenThereMap extends Component {
 
-  // componentDidMount() {
-  //   this.getGeoLocation();
-  // }
-
-  // Get the user's current location and update state
-  // getGeoLocation = () => {
-  //   if(navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition( position => {
-  //       this.setState( prevState => ({
-  //         currentLatLng: {
-  //           ...prevState.currentLatLng,
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude
-  //         },
-  //         isMarkerShown: true
-  //       }))
-  //     })
-  //   } else {
-  //     console.warn('Whoops an error occured');
-  //   }
-  // }
-
   render() {
     const {pins, onClick} = this.props;
 
