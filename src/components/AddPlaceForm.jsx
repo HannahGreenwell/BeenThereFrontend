@@ -15,6 +15,7 @@ class AddPlaceForm extends Component {
     };
   }
 
+  // Get Google Place data from props and save it into state
   componentDidMount() {
     const { geocodedPrediction, originalPrediction } = this.props.placeData;
     const name = originalPrediction.description.split(',')[0];

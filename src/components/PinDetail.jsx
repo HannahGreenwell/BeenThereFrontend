@@ -6,7 +6,6 @@ class PinDetail extends Component {
   }
 
   render() {
-
     const {pin} = this.props;
 
     return (

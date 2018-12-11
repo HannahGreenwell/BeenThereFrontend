@@ -21,6 +21,7 @@ class AddPlace extends Component {
     };
   }
 
+  // Handle Google Places Suggest text field input
   handleInputChange(event) {
     this.setState({
       search: event.target.value,
@@ -28,8 +29,10 @@ class AddPlace extends Component {
     });
   }
 
+  // Handle click on Google Places dropdown suggestion
   handleSelectSuggest(geocodedPrediction, originalPrediction) {
     console.log('SELECTED:', geocodedPrediction, originalPrediction);
+    // Save the Google Place data into state and update showAddPlaceForm to true
     this.setState({
       search: '',
       value: originalPrediction.description,
@@ -41,6 +44,7 @@ class AddPlace extends Component {
     });
   }
 
+  // Hide the add place form if the user clicks back into the Google Places Suggest field
   handleFocus() {
     this.setState({showAddPlaceForm: false});
   }

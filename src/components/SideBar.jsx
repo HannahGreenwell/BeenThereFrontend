@@ -26,10 +26,6 @@ class SideBar extends Component {
     }
   }
 
-  handleClick() {
-    console.log('clicked');
-  }
-
   handleAddPlaceClick() {
     this.setState({showAddPlace: true});
   }

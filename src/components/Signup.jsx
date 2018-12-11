@@ -4,8 +4,8 @@ import axios from 'axios';
 import HeaderProtected from './HeaderProtected';
 import './LoginSignup.css';
 
-const URL = '/user';
-// const URL = 'http://www.localhost:3000/user';
+// const URL = '/user';
+const URL = 'http://www.localhost:3000/user';
 
 class Signup extends Component {
   constructor() {
@@ -18,16 +18,21 @@ class Signup extends Component {
     };
   }
 
+  // Handle email field input
   handleEmailChange(event) {
     this.setState({emailInput: event.target.value});
   }
 
+  // Handle password field input\
   handlePasswordChange(event) {
     this.setState({passwordInput: event.target.value});
   }
 
+  // Sign up button submit handler
   handleSubmit(event) {
     event.preventDefault();
+
+    // Make an axios post request to the backend to sign up
     axios.post(`${URL}/signup`,
       {
         email: this.state.emailInput,
@@ -35,7 +40,7 @@ class Signup extends Component {
       }
     )
     .then(response => {
-      console.log('RESPONSE: ', response.data);
+      // If the signin was successful, save the returned JWT into the authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
       // Store the JWT token in the browser's localStorage system
@@ -47,13 +52,15 @@ class Signup extends Component {
       this.props.history.push(`/`);
     })
     .catch( error => {
-      console.dir(error.response.data.message);
+      // Save any errors to state
       this.setState({error: error.response.data.message});
     });
   }
 
+  // Login link click handler
   handleLoginClick(event) {
     event.preventDefault();
+    // Redirect to login page
     this.props.history.push(`/login`);
   }
 
