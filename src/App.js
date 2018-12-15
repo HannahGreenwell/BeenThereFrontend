@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from './components/Header';
 import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
+import AddPlaceButton from './components/AddPlaceButton';
 
 // const URL = '/user';
 const URL = 'http://www.localhost:3000/user';
@@ -123,6 +124,8 @@ class App extends Component {
             onClick={(city, name) => this.handleMarkerClick(city, name)}
           />
         </div>
+
+        <AddPlaceButton />
       </div>
     );
   }

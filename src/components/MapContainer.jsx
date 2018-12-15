@@ -22,6 +22,7 @@ class MapContainer extends Component {
 
     return (
       <div className="map">
+
         <BeenThereMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=geometry,drawing,places`}
           loadingElement={<div style={{height: '100%'}} />}
@@ -30,6 +31,7 @@ class MapContainer extends Component {
           onClick={onClick}
           pins={pins}
         />
+
       </div>
     );
   }

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 
 import PinDetail from './PinDetail'
 import AddPlace from './AddPlace'
-import FilterPlaces from './FilterPlaces'
-import SearchCities from './SearchCities'
 
 import './SideBar.css';
 
@@ -56,7 +54,7 @@ class SideBar extends Component {
             <span
               className="yellow-bg"
             >
-              Place Details
+              My Places
             </span>
           </h3>
           {
@@ -66,86 +64,9 @@ class SideBar extends Component {
             />
           }
         </div>
-
-        <div className="sidebar-add-place">
-          <h3>
-            <span
-              className="yellow-bg"
-              onClick={() => this.handleAddPlaceClick()}
-            >
-              Add New Place
-            </span>
-          </h3>
-          {
-            this.state.showAddPlace &&
-            <AddPlace
-              pinAdded={this.props.pinAdded}
-              onSubmit={this.props.onSubmit} />
-          }
-        </div>
-
-        <div className="sidebar-filter-places">
-          <h3>
-            <span
-              className="yellow-bg"
-              onClick={() => this.handleFilterPlacesClick()}
-            >
-              Filter Places
-            </span>
-          </h3>
-          {
-            this.state.showFilterPlaces &&
-            <FilterPlaces />
-          }
-        </div>
-
-        <div className="sidebar-search-cities">
-          <h3>
-            <span
-              className="yellow-bg"
-              onClick={() => this.handleSearchCitiesClick()}
-            >
-              Search by City
-            </span>
-          </h3>
-          {
-            this.state.showSearchCities &&
-            <SearchCities />
-          }
-        </div>
       </div>
     );
   }
 }
 
 export default SideBar;
-
-// <div className="sidebar-filter-places">
-//   <h3>
-//     <span
-//       className="yellow-bg"
-//       onClick={() => this.handleFilterPlacesClick()}
-//     >
-//       Filter Places
-//     </span>
-//   </h3>
-//   {
-//     this.state.showFilterPlaces &&
-//     <FilterPlaces />
-//   }
-// </div>
-//
-// <div className="sidebar-search-cities">
-//   <h3>
-//     <span
-//       className="yellow-bg"
-//       onClick={() => this.handleSearchCitiesClick()}
-//     >
-//       Search by City
-//     </span>
-//   </h3>
-//   {
-//     this.state.showSearchCities &&
-//     <SearchCities />
-//   }
-// </div>

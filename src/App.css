@@ -40,7 +40,7 @@ body {
 
 .sidebar {
   background-color: rgba(255, 255, 255, 1);
-  width: 33vw;
+  width: 28vw;
   height: 90vh;
   position: fixed;
   top: 10vh;
@@ -50,6 +50,21 @@ body {
   padding: 20px;
   overflow: scroll;
   /* visibility: hidden; */
+}
+
+.add-place-btn {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  left: 50%;
+  bottom: 20px;
+  z-index: 2;
+  border-radius: 50%;
+}
+
+.add-place-btn i {
+  font-size: 50px;
+  line-height: 70px;
 }
 
 h2 {
