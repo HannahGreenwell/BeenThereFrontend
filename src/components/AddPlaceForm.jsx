@@ -5,17 +5,16 @@ class AddPlaceForm extends Component {
     super(props);
 
     this.state = {
-      nameInput: '',
-      categoryInput: '',
-      descriptionInput: '',
-      imageInput: '',
-      latInput: '',
-      lngInput: '',
-      cityInput: '',
+      nameValue: '',
+      categoryValue: '',
+      descriptionValue: '',
+      imageValue: '',
+      latValue: '',
+      lngValue: '',
+      cityValue: '',
     };
   }
 
-  // Get Google Place data from props and save it into state
   componentDidMount() {
     const { geocodedPrediction, originalPrediction } = this.props.placeData;
     const name = originalPrediction.description.split(',')[0];
@@ -23,68 +22,103 @@ class AddPlaceForm extends Component {
     const lng = geocodedPrediction.geometry.location.lng();
 
     this.setState({
-      nameInput: name,
-      latInput: lat,
-      lngInput: lng,
-      cityInput: geocodedPrediction.address_components[3].short_name,
+      nameValue: name,
+      latValue: lat,
+      lngValue: lng,
+      cityValue: geocodedPrediction.address_components[2].short_name,
     });
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   handleNameChange(event) {
-    this.setState({nameInput: event.target.value});
+    this.setState({nameValue: event.target.value});
   }
 
   handleCategoryChange(event) {
-    this.setState({categoryInput: event.target.value});
-  }
-
-  handleDescriptionChange(event) {
-    this.setState({descriptionInput: event.target.value});
+    this.setState({categoryValue: event.target.value});
   }
 
   handleImageChange(event) {
-    this.setState({imageInput: event.target.value});
+    this.setState({imageValue: event.target.value});
+  }
+
+  handleDescriptionChange(event) {
+    this.setState({descriptionValue: event.target.value});
   }
 
   render() {
-    const {nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput} = this.state;
+    const {
+      nameValue,
+      categoryValue,
+      descriptionValue,
+      imageValue,
+      latValue,
+      lngValue,
+      cityValue
+    } = this.state;
 
     return (
       <form
-        onSubmit={(event, name, category, description, images, lat, lng, city) => this.props.onSubmit(event, nameInput, categoryInput, descriptionInput, imageInput, latInput, lngInput, cityInput)}>
+        onSubmit={(event, name, category, description, images, lat, lng, city) => {
+          this.props.onSubmit(
+            event,
+            nameValue,
+            categoryValue,
+            descriptionValue,
+            imageValue,
+            latValue,
+            lngValue,
+            cityValue
+          )
+        }}
+      >
+
         <div>
           <label>Name</label>
           <input
             type="text"
-            value={nameInput}
-            onChange={(event) => this.handleNameChange(event)} />
+            value={this.state.nameValue}
+            onChange={this.handleNameChange} />
         </div>
+
         <div>
           <label>Category</label>
-          <input
-            type="text"
-            value={categoryInput}
-            onChange={(event) => this.handleCategoryChange(event)} />
+          <select
+            value={this.state.categoryValue}
+            onChange={this.handleCategoryChange}
+          >
+            <option value="See & Do">See &amp; Do</option>
+            <option value="Food & Drink">Food &amp; Drink</option>
+            <option value="Nightlife">Nightlife</option>
+            <option value="Shop">Shop</option>
+          </select>
         </div>
-        <div>
-          <label>Description</label>
-          <input
-            type="text"
-            value={descriptionInput}
-            onChange={(event) => this.handleDescriptionChange(event)} />
-        </div>
+
         <div>
           <label>Image</label>
           <input
             type="text"
-            value={imageInput}
-            onChange={(event) => this.handleImageChange(event)} />
+            value={this.state.imageValue}
+            onChange={this.handleImageChange} />
         </div>
+
+        <div>
+          <label>Description</label>
+          <textarea
+            value={this.state.descriptionValue}
+            onChange={this.handleDescriptionChange}
+          />
+        </div>
+
         <input type="submit" value="Add Place" />
 
-        <input type="hidden" value={latInput} />
-        <input type="hidden" value={lngInput} />
-        <input type="hidden" value={cityInput} />
+        <input type="hidden" value={latValue} />
+        <input type="hidden" value={lngValue} />
+        <input type="hidden" value={cityValue} />
       </form>
     );
   }

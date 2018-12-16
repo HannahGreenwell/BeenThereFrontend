@@ -16,6 +16,10 @@ class Signup extends Component {
       passwordInput: '',
       error: ''
     };
+
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Handle email field input
@@ -57,30 +61,29 @@ class Signup extends Component {
     });
   }
 
-  // Login link click handler
-  handleLoginClick(event) {
-    event.preventDefault();
-    // Redirect to login page
-    this.props.history.push(`/login`);
-  }
-
   render() {
     return (
       <div className="login-container">
-        <HeaderProtected onClick={ev => this.handleLoginClick(ev)} />
+        <HeaderProtected />
 
         <div className="login-box">
           <h2>Sign Up</h2>
 
-          <form onSubmit={ev => this.handleSubmit(ev)}>
+          <form onSubmit={this.handleSubmit}>
             <div>
               <label>Email</label>
-              <input type="email" value={this.state.emailInput} onChange={ev => this.handleEmailChange(ev)} />
+              <input
+                type="email"
+                value={this.state.emailInput}
+                onChange={this.handleEmailChange} />
             </div>
 
             <div>
               <label>Password</label>
-              <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} />
+              <input
+                type="password"
+                value={this.state.passwordInput}
+                onChange={this.handlePasswordChange} />
             </div>
 
             <input type="submit" value="Sign Up" />

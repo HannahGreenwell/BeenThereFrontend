@@ -8,7 +8,7 @@
 
 .login-box {
   width: 300px;
-  height: 250px;
+  height: 270px;
   background-color: white;
   border: solid 1px #CCC;
   position: fixed;
@@ -19,5 +19,5 @@
 
 .error-msg {
   color: red;
-  padding-top: 10px;
+  padding-top: 15px;
 }

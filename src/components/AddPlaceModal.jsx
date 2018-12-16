@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AddPlace from './AddPlace'
+import AddPlaceSearch from './AddPlaceSearch'
 import './AddPlaceModal.css';
 
 function AddPlaceModal(props) {
@@ -41,7 +41,7 @@ function AddPlaceModal(props) {
           </i>
         </button>
 
-        <AddPlace />
+        <AddPlaceSearch onSubmit={props.onSubmit} />
 
       </div>
 

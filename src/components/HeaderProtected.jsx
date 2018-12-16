@@ -1,36 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 import './Header.css';
 
-class HeaderProtected extends Component {
-  render() {
-    return (
-      <div className="header">
-        <h1>Been There</h1>
+function HeaderProtected(props) {
 
-        <nav className="main-nav">
-          <ul>
-            <li>
+  return (
+    <div className="header">
+      <h1>Been There</h1>
+
+      <nav className="main-nav">
+        <ul>
+          <li>
+            <Link to="/login">
               <span
               className="yellow-bg"
-              onClick={this.props.onClick}
+              onClick={props.onClick}
               >
               Login
               </span>
-            </li>
-            <li>
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/signup">
               <span
               className="yellow-bg"
-              onClick={this.props.onClick}
+              onClick={props.onClick}
               >
               Sign Up
               </span>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    );
-  }
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  );
 }
 
 export default HeaderProtected;

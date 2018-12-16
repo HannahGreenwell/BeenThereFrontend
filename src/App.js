@@ -7,13 +7,13 @@ import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
 import AddPlaceModal from './components/AddPlaceModal';
 
-// const URL = '/user';
 const URL = 'http://www.localhost:3000/user';
+// const URL = '/user';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       pins: [],
@@ -22,12 +22,9 @@ class App extends Component {
     };
 
     this.toggleModal = this.toggleModal.bind(this);
-  }
-
-  toggleModal() {
-    this.setState({
-      showModal: !this.state.showModal
-    });
+    this.handleSignOut = this.handleSignOut.bind(this);
+    this.handlePinClick = this.handlePinClick.bind(this);
+    this.handleAddPlaceSubmit = this.handleAddPlaceSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -70,6 +67,13 @@ class App extends Component {
     });
   }
 
+  // Display/hide the modal
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  }
+
   // Sign out
   handleSignOut() {
     // Remove JWT from localStorage
@@ -78,8 +82,8 @@ class App extends Component {
     this.props.history.push('/login');
   }
 
-  // Click handler for map markers/pins
-  handleMarkerClick(city, name) {
+  // Click handler for map pins
+  handlePinClick(city, name) {
     // Make an axios request to the backend for the clicked pin's details
     axios.get(`${URL}/pin/${city}/${name}`)
     .then(response => {
@@ -91,65 +95,61 @@ class App extends Component {
     .catch(console.warn);
   }
 
-  // // Submit handler for add new place form
-  // handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city) {
-  //   ev.preventDefault();
-  //   // Make axios post request to backend to create new place
-  //   axios.post(`${URL}/pin`, {
-  //     name,
-  //     category,
-  //     description,
-  //     images,
-  //     lat,
-  //     lng,
-  //     city
-  //   })
-  //   .then(response => {
-  //     // Set the returned pin and pin details into state
-  //     this.setState({
-  //       pins: [...this.state.pins, response.data.pinToPush],
-  //       selectedPin: response.data.newPin,
-  //       wasPinAdded: true,
-  //     })
-  //   })
-  //   .catch(console.warn);
-  // }
+  // Submit handler for add new place form
+  handleAddPlaceSubmit(ev, name, category, description, images, lat, lng, city) {
+    ev.preventDefault();
+    // Make axios post request to backend to create new place
+    axios.post(`${URL}/pin`, {
+      name,
+      category,
+      description,
+      images,
+      lat,
+      lng,
+      city
+    })
+    .then(response => {
+      // Set the returned pin and pin details into state
+      this.setState({
+        pins: [...this.state.pins, response.data.pinToPush],
+        selectedPin: response.data.newPin,
+        showModal: false,
+      })
+    })
+    .catch(console.warn);
+  }
 
   render() {
     return (
       <div className="App">
 
-        <Header onClick={() => this.handleSignOut()}/>
+        <Header onClick={this.handleSignOut}/>
 
         <div className="main-container">
-
           <SideBar
             pin={this.state.selectedPin}
             pinAdded={this.state.wasPinAdded}
-            onSubmit={(ev, name, category, description, images, lat, lng, city) => this.handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city)}
           />
 
           <MapContainer
             pins={this.state.pins}
-            onClick={(city, name) => this.handleMarkerClick(city, name)}
+            onClick={this.handlePinClick}
           />
-
         </div>
 
         <button
           className="add-place-btn"
           onClick={this.toggleModal}
         >
-
           <i className="material-icons">
             add_location
           </i>
-
         </button>
 
         <AddPlaceModal
           show={this.state.showModal}
           closeCallBack={this.toggleModal}
+          onSubmit={this.handleAddPlaceSubmit}
         />
       </div>
     );

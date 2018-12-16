@@ -5,33 +5,14 @@ import PinDetail from './PinDetail'
 import './SideBar.css';
 
 class SideBar extends Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
       showSideBar: true,
       showPinDetail: true,
-      showAddPlace: false,
-      showFilterPlaces: false,
-      showSearchCities: false,
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    if(this.props.pinAdded !== prevProps.pinAdded) {
-      this.setState({showAddPlace: false});
-    }
-  }
-
-  handleAddPlaceClick() {
-    this.setState({showAddPlace: true});
-  }
-
-  handleFilterPlacesClick() {
-    this.setState({showFilterPlaces: true});
-  }
-  handleSearchCitiesClick() {
-    this.setState({showSearchCities: true});
   }
 
   render() {
@@ -56,6 +37,7 @@ class SideBar extends Component {
               My Places
             </span>
           </h3>
+
           {
             this.state.showPinDetail &&
             <PinDetail

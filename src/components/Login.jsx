@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 import HeaderProtected from './HeaderProtected';
+
 import './LoginSignup.css';
 
-// const URL = '/user';
 const URL = 'http://www.localhost:3000/user';
+// const URL = '/user';
 
 class Login extends Component {
+
   constructor() {
     super();
 
@@ -16,6 +18,10 @@ class Login extends Component {
       passwordInput: '',
       error: ''
     };
+
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Save any error messages into state
@@ -63,30 +69,31 @@ class Login extends Component {
     });
   }
 
-  // Sign Up link click handler
-  handleSignupClick(event) {
-    event.preventDefault();
-    // Redirect to sign up page
-    this.props.history.push(`/signup`);
-  }
-
   render() {
     return (
       <div className="login-container">
-        <HeaderProtected onClick={ev => this.handleSignupClick(ev)} />
+        <HeaderProtected />
 
         <div className="login-box">
           <h2>Login</h2>
 
-          <form onSubmit={ev => this.handleSubmit(ev)}>
+          <form onSubmit={this.handleSubmit}>
             <div>
               <label>Email</label>
-              <input type="email" value={this.state.emailInput} onChange={ev => this.handleEmailChange(ev)} />
+              <input
+                type="email"
+                value={this.state.emailInput}
+                onChange={ this.handleEmailChange}
+              />
             </div>
 
             <div>
               <label>Password</label>
-              <input type="password" value={this.state.passwordInput} onChange={ev => this.handlePasswordChange(ev)} />
+              <input
+                type="password"
+                value={this.state.passwordInput}
+                onChange={this.handlePasswordChange}
+              />
             </div>
 
             <input type="submit" value="Login" />
