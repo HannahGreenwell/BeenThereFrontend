@@ -5,21 +5,29 @@ import axios from 'axios';
 import Header from './components/Header';
 import MapContainer from './components/MapContainer';
 import SideBar from './components/SideBar';
-import AddPlaceButton from './components/AddPlaceButton';
+import AddPlaceModal from './components/AddPlaceModal';
 
 // const URL = '/user';
 const URL = 'http://www.localhost:3000/user';
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pins: [],
       selectedPin: {},
-      wasPinAdded: false,
+      showModal: false,
     };
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
   }
 
   componentWillMount() {
@@ -83,36 +91,38 @@ class App extends Component {
     .catch(console.warn);
   }
 
-  // Submit handler for add new place form
-  handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city) {
-    ev.preventDefault();
-    // Make axios post request to backend to create new place
-    axios.post(`${URL}/pin`, {
-      name,
-      category,
-      description,
-      images,
-      lat,
-      lng,
-      city
-    })
-    .then(response => {
-      // Set the returned pin and pin details into state
-      this.setState({
-        pins: [...this.state.pins, response.data.pinToPush],
-        selectedPin: response.data.newPin,
-        wasPinAdded: true,
-      })
-    })
-    .catch(console.warn);
-  }
+  // // Submit handler for add new place form
+  // handleAddMarkerSubmit(ev, name, category, description, images, lat, lng, city) {
+  //   ev.preventDefault();
+  //   // Make axios post request to backend to create new place
+  //   axios.post(`${URL}/pin`, {
+  //     name,
+  //     category,
+  //     description,
+  //     images,
+  //     lat,
+  //     lng,
+  //     city
+  //   })
+  //   .then(response => {
+  //     // Set the returned pin and pin details into state
+  //     this.setState({
+  //       pins: [...this.state.pins, response.data.pinToPush],
+  //       selectedPin: response.data.newPin,
+  //       wasPinAdded: true,
+  //     })
+  //   })
+  //   .catch(console.warn);
+  // }
 
   render() {
     return (
       <div className="App">
+
         <Header onClick={() => this.handleSignOut()}/>
 
         <div className="main-container">
+
           <SideBar
             pin={this.state.selectedPin}
             pinAdded={this.state.wasPinAdded}
@@ -123,9 +133,24 @@ class App extends Component {
             pins={this.state.pins}
             onClick={(city, name) => this.handleMarkerClick(city, name)}
           />
+
         </div>
 
-        <AddPlaceButton />
+        <button
+          className="add-place-btn"
+          onClick={this.toggleModal}
+        >
+
+          <i className="material-icons">
+            add_location
+          </i>
+
+        </button>
+
+        <AddPlaceModal
+          show={this.state.showModal}
+          closeCallBack={this.toggleModal}
+        />
       </div>
     );
   }

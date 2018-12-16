@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import PinDetail from './PinDetail'
-import AddPlace from './AddPlace'
 
 import './SideBar.css';
 

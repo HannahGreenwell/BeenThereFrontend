@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactGoogleMapLoader from 'react-google-maps-loader';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 
 import AddPlaceForm from './AddPlaceForm';
@@ -54,6 +53,7 @@ class AddPlace extends Component {
 
     return (
       <div>
+
         <ReactGooglePlacesSuggest
           googleMaps={window.google.maps}
           autocompletionRequest={{
@@ -71,6 +71,7 @@ class AddPlace extends Component {
             </div>
           )}
         >
+
           <input
             type="text"
             value={value}
@@ -78,6 +79,7 @@ class AddPlace extends Component {
             onChange={(event) => this.handleInputChange(event)}
             onFocus={() => this.handleFocus()}
           />
+
         </ReactGooglePlacesSuggest>
 
         {
@@ -87,6 +89,7 @@ class AddPlace extends Component {
             onSubmit={this.props.onSubmit}
           />
         }
+
       </div>
     );
   }
