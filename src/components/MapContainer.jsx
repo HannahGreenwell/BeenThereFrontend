@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import BeenThereMap from './BeenThereMap';
 
@@ -18,6 +19,7 @@ class MapContainer extends Component {
   }
 
   render() {
+
     const {pins, onClick} = this.props;
 
     return (
@@ -35,6 +37,15 @@ class MapContainer extends Component {
       </div>
     );
   }
+}
+
+MapContainer.propTypes = {
+  pins: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
+
+MapContainer.defaultProps = {
+  pins: [],
+}
 
 export default MapContainer;

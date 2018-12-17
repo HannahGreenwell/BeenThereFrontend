@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Header.css';
 
 function Header(props) {
+
+  const {onClick} = props;
 
   return (
     <div className="header">
@@ -15,7 +18,7 @@ function Header(props) {
           <li>
             <span
             className="yellow-bg"
-            onClick={props.onClick}
+            onClick={onClick}
             >
             Sign Out
             </span>
@@ -25,5 +28,9 @@ function Header(props) {
     </div>
   );
 }
+
+Header.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Header;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import PinDetail from './PinDetail'
 
@@ -16,38 +17,39 @@ class SideBar extends Component {
   }
 
   render() {
+
+    const {pin} = this.props;
+
     return (
       <div className="sidebar">
 
         <div className="sidebar-header">
           <i className="material-icons">pin_drop</i>
-          <button
-            onClick={() => this.handleClick()}
-            className="open-close"
-          >
+
+          <button className="open-close">
             <i className="material-icons">close</i>
           </button>
         </div>
 
         <div className="sidebar-place-detail">
           <h3>
-            <span
-              className="yellow-bg"
-            >
+            <span className="yellow-bg">
               My Places
             </span>
           </h3>
 
           {
             this.state.showPinDetail &&
-            <PinDetail
-              pin={this.props.pin}
-            />
+            <PinDetail pin={pin} />
           }
         </div>
       </div>
     );
   }
 }
+
+SideBar.propTypes = {
+  pin: PropTypes.object,
+};
 
 export default SideBar;

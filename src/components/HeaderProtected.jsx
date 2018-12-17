@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './Header.css';
 
-function HeaderProtected(props) {
+function HeaderProtected() {
 
   return (
     <div className="header">
@@ -13,21 +13,15 @@ function HeaderProtected(props) {
         <ul>
           <li>
             <Link to="/login">
-              <span
-              className="yellow-bg"
-              onClick={props.onClick}
-              >
-              Login
+              <span className="yellow-bg">
+                Login
               </span>
             </Link>
           </li>
 
           <li>
             <Link to="/signup">
-              <span
-              className="yellow-bg"
-              onClick={props.onClick}
-              >
+              <span className="yellow-bg">
               Sign Up
               </span>
             </Link>

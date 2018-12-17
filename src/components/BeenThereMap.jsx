@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 function BeenThereMap(props) {
@@ -31,6 +32,16 @@ function BeenThereMap(props) {
 
     </GoogleMap>
   );
+}
+
+BeenThereMap.propTypes = {
+  pins: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
+
+BeenThereMap.defaultProps = {
+  pins: [],
+};
+
 
 export default withGoogleMap(BeenThereMap);

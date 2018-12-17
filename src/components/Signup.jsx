@@ -8,8 +8,9 @@ import './LoginSignup.css';
 const URL = 'http://www.localhost:3000/user';
 
 class Signup extends Component {
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       emailInput: '',

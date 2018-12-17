@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class AddPlaceForm extends Component {
+
   constructor(props) {
     super(props);
 
@@ -13,6 +15,11 @@ class AddPlaceForm extends Component {
       lngValue: '',
       cityValue: '',
     };
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   componentDidMount() {
@@ -27,11 +34,6 @@ class AddPlaceForm extends Component {
       lngValue: lng,
       cityValue: geocodedPrediction.address_components[2].short_name,
     });
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   handleNameChange(event) {
@@ -123,5 +125,9 @@ class AddPlaceForm extends Component {
     );
   }
 }
+
+AddPlaceForm.propTypes = {
+  placeData: PropTypes.object,
+};
 
 export default AddPlaceForm;

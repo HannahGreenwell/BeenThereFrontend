@@ -10,8 +10,8 @@ const URL = 'http://www.localhost:3000/user';
 
 class Login extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       emailInput: '',

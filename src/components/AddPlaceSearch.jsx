@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 
 import AddPlaceForm from './AddPlaceForm';
 
-const API_KEY = process.env.REACT_APP_GOOGLE_MAPS;
-
 class AddPlaceSearch extends Component {
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       search: '',
@@ -18,6 +18,10 @@ class AddPlaceSearch extends Component {
       },
       showAddPlaceForm: false,
     };
+
+    this.handleSelectSuggest = this.handleSelectSuggest.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   // Handle Google Places Suggest text field input
@@ -49,17 +53,17 @@ class AddPlaceSearch extends Component {
   }
 
   render() {
+
     const {search, value, placeData, showAddPlaceForm} = this.state;
+    const {onSubmit} = this.props;
 
     return (
       <div>
 
         <ReactGooglePlacesSuggest
           googleMaps={window.google.maps}
-          autocompletionRequest={{
-            input: search,
-          }}
-          onSelectSuggest={(geocodedPrediction, originalPrediction) => this.handleSelectSuggest(geocodedPrediction, originalPrediction)}
+          autocompletionRequest={{input: search}}
+          onSelectSuggest={this.handleSelectSuggest}
           textNoResults="Sorry, place not found"
           customRender={prediction => (
             <div className="customWrapper">
@@ -76,8 +80,8 @@ class AddPlaceSearch extends Component {
             type="text"
             value={value}
             placeholder="Search for a place"
-            onChange={(event) => this.handleInputChange(event)}
-            onFocus={() => this.handleFocus()}
+            onChange={this.handleInputChange}
+            onFocus={this.handleFocus}
           />
 
         </ReactGooglePlacesSuggest>
@@ -86,13 +90,17 @@ class AddPlaceSearch extends Component {
           showAddPlaceForm  &&
           <AddPlaceForm
             placeData={placeData}
-            onSubmit={this.props.onSubmit}
+            onSubmit={onSubmit}
           />
         }
 
       </div>
     );
   }
+}
+
+AddPlaceSearch.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default AddPlaceSearch;

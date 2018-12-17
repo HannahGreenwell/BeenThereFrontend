@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function PinDetail(props) {
 
@@ -12,7 +13,7 @@ function PinDetail(props) {
       <div>
         <h2><span className="yellow">{pin.name}</span></h2>
         <p className="category">{pin.category}</p>
-        <img src={pin.images}/>
+        <img src={pin.images} alt={pin.name} />
         <p className="description">{pin.description}</p>
       </div>
       :
@@ -21,5 +22,10 @@ function PinDetail(props) {
     </div>
   );
 }
+
+PinDetail.propTypes = {
+  pin: PropTypes.object.isRequired,
+};
+
 
 export default PinDetail;

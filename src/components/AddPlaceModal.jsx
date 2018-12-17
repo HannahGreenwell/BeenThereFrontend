@@ -8,7 +8,8 @@ function AddPlaceModal(props) {
 
   const {
     show,
-    closeCallBack
+    closeCallBack,
+    onSubmit,
   } = props;
 
   return (
@@ -41,12 +42,18 @@ function AddPlaceModal(props) {
           </i>
         </button>
 
-        <AddPlaceSearch onSubmit={props.onSubmit} />
+        <AddPlaceSearch onSubmit={onSubmit} />
 
       </div>
 
     </div>
   );
 }
+
+AddPlaceModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  closeCallBack: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default AddPlaceModal;
