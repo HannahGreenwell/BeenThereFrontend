@@ -8,17 +8,18 @@ class AddPlaceForm extends Component {
 
     this.state = {
       nameValue: '',
-      categoryValue: '',
+      categoryValue: 'See & Do',
       descriptionValue: '',
-      imageValue: '',
       latValue: '',
       lngValue: '',
       cityValue: '',
+      imageFile: null,
+      loaded: 0,
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
+    // this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
@@ -44,8 +45,8 @@ class AddPlaceForm extends Component {
     this.setState({categoryValue: event.target.value});
   }
 
-  handleImageChange(event) {
-    this.setState({imageValue: event.target.value});
+  handleImageChange = event => {
+    this.setState({imageFile: event.target.files[0]});
   }
 
   handleDescriptionChange(event) {
@@ -57,7 +58,7 @@ class AddPlaceForm extends Component {
       nameValue,
       categoryValue,
       descriptionValue,
-      imageValue,
+      imageFile,
       latValue,
       lngValue,
       cityValue
@@ -71,7 +72,7 @@ class AddPlaceForm extends Component {
             nameValue,
             categoryValue,
             descriptionValue,
-            imageValue,
+            imageFile,
             latValue,
             lngValue,
             cityValue
@@ -103,8 +104,7 @@ class AddPlaceForm extends Component {
         <div>
           <label>Image</label>
           <input
-            type="text"
-            value={this.state.imageValue}
+            type="file"
             onChange={this.handleImageChange} />
         </div>
 

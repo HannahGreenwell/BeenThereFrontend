@@ -99,24 +99,25 @@ class App extends Component {
   handleAddPlaceSubmit(ev, name, category, description, images, lat, lng, city) {
     ev.preventDefault();
     // Make axios post request to backend to create new place
-    axios.post(`${URL}/pin`, {
-      name,
-      category,
-      description,
-      images,
-      lat,
-      lng,
-      city
-    })
-    .then(response => {
-      // Set the returned pin and pin details into state
-      this.setState({
-        pins: [...this.state.pins, response.data.pinToPush],
-        selectedPin: response.data.newPin,
-        showModal: false,
-      })
-    })
-    .catch(console.warn);
+    console.log(images);
+    // axios.post(`${URL}/pin`, {
+    //   name,
+    //   category,
+    //   description,
+    //   images,
+    //   lat,
+    //   lng,
+    //   city
+    // })
+    // .then(response => {
+    //   // Set the returned pin and pin details into state
+    //   this.setState({
+    //     pins: [...this.state.pins, response.data.pinToPush],
+    //     selectedPin: response.data.newPin,
+    //     showModal: false,
+    //   })
+    // })
+    // .catch(console.warn);
   }
 
   render() {
