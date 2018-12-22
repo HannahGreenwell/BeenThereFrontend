@@ -53,8 +53,8 @@ class AddPlaceForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const formData  = new FormData(event.target);
-    this.props.onSubmit(formData);
+    const {name, category, description, image, lat, lng, city} = this.state;
+    this.props.onSubmit(name, category, description, image, lat, lng, city);
 
     this.setState({
       name: '',
@@ -69,13 +69,13 @@ class AddPlaceForm extends Component {
   render() {
     const {name, category, description, lat, lng, city} = this.state;
 
+
     return (
       <form onSubmit={this.handleSubmit}>
 
         <div>
           <label>Name</label>
           <input
-            name="name"
             type="text"
             value={name}
             onChange={this.handleNameChange} />
@@ -84,7 +84,6 @@ class AddPlaceForm extends Component {
         <div>
           <label>Category</label>
           <select
-            name="category"
             value={category}
             onChange={this.handleCategoryChange}
           >
@@ -98,7 +97,6 @@ class AddPlaceForm extends Component {
         <div>
           <label>Image</label>
           <input
-            name="image"
             type="file"
             onChange={this.handleImageChange} />
         </div>
@@ -106,7 +104,6 @@ class AddPlaceForm extends Component {
         <div>
           <label>Description</label>
           <textarea
-            name="description"
             value={description}
             onChange={this.handleDescriptionChange}
           />
@@ -114,9 +111,9 @@ class AddPlaceForm extends Component {
 
         <input type="submit" value="Add Place" />
 
-        <input type="hidden" value={lat} name="lat" />
-        <input type="hidden" value={lng} name="lng" />
-        <input type="hidden" value={city} name="city" />
+        <input type="hidden" value={lat} />
+        <input type="hidden" value={lng} />
+        <input type="hidden" value={city} />
       </form>
     );
   }
