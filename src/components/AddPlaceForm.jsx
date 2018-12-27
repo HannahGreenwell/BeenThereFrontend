@@ -14,12 +14,11 @@ class AddPlaceForm extends Component {
       lng: '',
       city: '',
       image: null,
-      loaded: 0,
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    // this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -63,6 +62,7 @@ class AddPlaceForm extends Component {
       lat: '',
       lng: '',
       city: '',
+      image: null,
     });
   }
 
