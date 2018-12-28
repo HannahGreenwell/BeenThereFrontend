@@ -24,6 +24,7 @@ class App extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
     this.handlePinClick = this.handlePinClick.bind(this);
+    this.handleDeletePlaceClick = this.handleDeletePlaceClick.bind(this);
     this.handleAddPlaceSubmit = this.handleAddPlaceSubmit.bind(this);
   }
 
@@ -95,6 +96,11 @@ class App extends Component {
     .catch(console.warn);
   }
 
+  // Click handler for delete place button
+  handleDeletePlaceClick(){
+    console.log('CLICKED!');
+  }
+
   // Submit handler for add new place form
   handleAddPlaceSubmit(formData) {
     // Make axios post request to backend to create new place
@@ -121,6 +127,7 @@ class App extends Component {
           <SideBar
             pin={this.state.selectedPin}
             pinAdded={this.state.wasPinAdded}
+            onClick={this.handleDeletePlaceClick}
           />
 
           <MapContainer

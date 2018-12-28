@@ -18,7 +18,7 @@ class SideBar extends Component {
 
   render() {
 
-    const {pin} = this.props;
+    const {pin, onClick} = this.props;
 
     return (
       <div className="sidebar">
@@ -40,7 +40,10 @@ class SideBar extends Component {
 
           {
             this.state.showPinDetail &&
-            <PinDetail pin={pin} />
+            <PinDetail
+              pin={pin}
+              onClick={onClick}
+            />
           }
         </div>
       </div>
