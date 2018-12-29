@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function PinDetail(props) {
+function PlaceDetail(props) {
 
-  const {pin, onClick} = props;
-
+  const {place, onClick} = props;
+  
   return (
     <div>
     {
-      pin.lat
+      place.lat
       ?
       <div>
         <h2>
-          <span className="yellow">{pin.name}</span>
+          <span className="yellow">{place.name}</span>
         </h2>
 
-        <p className="category">{pin.category}</p>
+        <p className="category">{place.category}</p>
 
-        <img src={pin.image} alt={pin.name} />
+        <img src={place.image} alt={place.name} />
 
-        <p className="description">{pin.description}</p>
+        <p className="description">{place.description}</p>
 
         <i className="material-icons edit-delete-btn">edit</i>
         <i
@@ -36,9 +36,9 @@ function PinDetail(props) {
   );
 }
 
-PinDetail.propTypes = {
-  pin: PropTypes.object.isRequired,
+PlaceDetail.propTypes = {
+  place: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default PinDetail;
+export default PlaceDetail;

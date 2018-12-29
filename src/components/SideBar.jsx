@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import PinDetail from './PinDetail'
+import PlaceDetail from './PlaceDetail'
 
 import './SideBar.css';
 
@@ -12,13 +12,13 @@ class SideBar extends Component {
 
     this.state = {
       showSideBar: true,
-      showPinDetail: true,
+      showPlaceDetail: true,
     };
   }
 
   render() {
 
-    const {pin, onClick} = this.props;
+    const {place, onClick} = this.props;
 
     return (
       <div className="sidebar">
@@ -38,6 +38,13 @@ class SideBar extends Component {
             </span>
           </h3>
 
+          {
+            this.state.showPlaceDetail &&
+            <PlaceDetail
+              place={place}
+              onClick={onClick}
+            />
+          }
 
         </div>
       </div>
@@ -46,15 +53,7 @@ class SideBar extends Component {
 }
 
 SideBar.propTypes = {
-  pin: PropTypes.object,
+  place: PropTypes.object,
 };
 
 export default SideBar;
-
-// {
-//   this.state.showPinDetail &&
-//   <PinDetail
-//     pin={pin}
-//     onClick={onClick}
-//   />
-// }

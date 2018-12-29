@@ -84,16 +84,13 @@ class App extends Component {
   }
 
   // Click handler for map pins
-  handlePlaceClick(city, name) {
-    // // Make an axios request to the backend for the clicked pin's details
-    // axios.get(`${URL}/pin/${city}/${name}`)
-    // .then(response => {
-    //   // Set the pin's details into state
-    //   this.setState({
-    //     selectedPin: response.data,
-    //   });
-    // })
-    // .catch(console.warn);
+  handlePlaceClick(lat, lng) {
+    const {places} = this.state;
+    const clickedPlace = places.find(place => place.lat === lat && place.lng);
+
+    this.setState({
+      selectedPlace: clickedPlace,
+    });
   }
 
   // Click handler for delete place button

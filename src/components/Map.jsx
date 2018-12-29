@@ -17,7 +17,7 @@ function Map(props) {
         <Marker
           position={{lat: place.lat, lng: place.lng,}}
           key={`${place.name}`}
-          onClick={() => onClick(place.city, place.name)}
+          onClick={() => onClick(place.lat, place.lng)}
         >
 
           <InfoWindow>
