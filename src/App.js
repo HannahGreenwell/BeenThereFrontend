@@ -107,13 +107,13 @@ class App extends Component {
   // Submit handler for add new place form
   handleAddPlaceSubmit(formData) {
     // Make axios post request to backend to create new place
-    axios.post(`${URL}/pin`, formData)
+    axios.post(`${URL}/place`, formData)
     .then(response => {
-      console.log(response);
-      // Set the returned pin and pin details into state
+      const place = response.data;
+      // Set the returned place into state and hide the modal
       this.setState({
-        pins: [...this.state.pins, response.data.pinToPush],
-        selectedPin: response.data.newPin,
+        places: [...this.state.places, place],
+        selectedPlace: place,
         showModal: false,
       })
     })

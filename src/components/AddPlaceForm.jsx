@@ -12,13 +12,11 @@ class AddPlaceForm extends Component {
       description: '',
       lat: '',
       lng: '',
-      city: '',
       image: null,
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,9 +26,8 @@ class AddPlaceForm extends Component {
     const name = originalPrediction.description.split(',')[0];
     const lat = geocodedPrediction.geometry.location.lat();
     const lng = geocodedPrediction.geometry.location.lng();
-    const city = geocodedPrediction.address_components[2].short_name;
 
-    this.setState({name, lat, lng, city});
+    this.setState({name, lat, lng});
   }
 
   handleNameChange(event) {
@@ -41,9 +38,9 @@ class AddPlaceForm extends Component {
     this.setState({category: event.target.value});
   }
 
-  handleImageChange = event => {
-    this.setState({image: event.target.files[0]});
-  }
+  // handleImageChange = event => {
+  //   this.setState({image: event.target.files[0]});
+  // }
 
   handleDescriptionChange(event) {
     this.setState({description: event.target.value});
@@ -60,14 +57,12 @@ class AddPlaceForm extends Component {
       category: 'See & Do',
       description: '',
       lat: '',
-      lng: '',
-      city: '',
-      image: null,
+      lng: ''
     });
   }
 
   render() {
-    const {name, category, description, lat, lng, city} = this.state;
+    const {name, category, description, lat, lng} = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -116,7 +111,6 @@ class AddPlaceForm extends Component {
 
         <input type="hidden" value={lat} name="lat" />
         <input type="hidden" value={lng} name="lng" />
-        <input type="hidden" value={city} name="city" />
       </form>
     );
   }
