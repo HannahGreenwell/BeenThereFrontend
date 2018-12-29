@@ -13,7 +13,6 @@ function Header(props) {
 
       <nav className="main-nav">
         <ul>
-          <li><span className="yellow-bg">About</span></li>
           <li><span className="yellow-bg">Account</span></li>
           <li>
             <span
