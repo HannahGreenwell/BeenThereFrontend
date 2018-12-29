@@ -19,6 +19,7 @@ Been There is a map based app for people who are bursting with travel recommenda
 
 ### Front-End Packages & APIs
 - axios
+- react-router-dom
 - Google Maps API
 - react-google-maps
 - react-google-places-suggest
@@ -26,14 +27,12 @@ Been There is a map based app for people who are bursting with travel recommenda
 ### Known Bugs
 - Add new place form still displaying after adding a second place
 - Map default centre is hard-coded
-- Sign-up and login links redirecting to incorrect route
 
 ### To Do
-- Edit and delete saved places
+- Edit saved places
 - Share maps with friends
-- Search all friends' maps by city
-- About page
 - Account page
+- TESTING
 
 ### Screenshot
-![Been There Screenshot](https://i.imgur.com/v4MDyiA.jpg)
+![Been There Screenshot](./been-there-screenshot.jpeg)
