@@ -16,14 +16,14 @@ class App extends Component {
     super();
 
     this.state = {
-      pins: [],
-      selectedPin: {},
+      places: [],
+      selectedPlace: {},
       showModal: false,
     };
 
-    this.toggleModal = this.toggleModal.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
-    this.handlePinClick = this.handlePinClick.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.handlePlaceClick = this.handlePlaceClick.bind(this);
     this.handleDeletePlaceClick = this.handleDeletePlaceClick.bind(this);
     this.handleAddPlaceSubmit = this.handleAddPlaceSubmit.bind(this);
   }
@@ -47,17 +47,17 @@ class App extends Component {
       }
 
       // Fetch the user's saved places
-      this.fetchPins();
+      this.fetchPlaces();
     }
   }
 
   // Makes an axios request to the backend for the user's saved places
-  fetchPins() {
-    axios.get(`${URL}/beenthere`)
+  fetchPlaces() {
+    axios.get(`${URL}/map`)
     .then(response => {
       // Save the returned pins array into state
       // Note: user's with no pins will return an empty array
-      this.setState({pins: response.data});
+      this.setState({places: response.data});
     })
     .catch(error => {
       // If an (authorization) error occurs, redirect to the login page
@@ -65,13 +65,6 @@ class App extends Component {
         pathname: '/login',
         // state: {message: 'Please login to access that page'}
       });
-    });
-  }
-
-  // Display/hide the modal
-  toggleModal() {
-    this.setState({
-      showModal: !this.state.showModal
     });
   }
 
@@ -83,22 +76,35 @@ class App extends Component {
     this.props.history.push('/login');
   }
 
+  // Display/hide the modal
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  }
+
   // Click handler for map pins
-  handlePinClick(city, name) {
-    // Make an axios request to the backend for the clicked pin's details
-    axios.get(`${URL}/pin/${city}/${name}`)
-    .then(response => {
-      // Set the pin's details into state
-      this.setState({
-        selectedPin: response.data,
-      });
-    })
-    .catch(console.warn);
+  handlePlaceClick(city, name) {
+    // // Make an axios request to the backend for the clicked pin's details
+    // axios.get(`${URL}/pin/${city}/${name}`)
+    // .then(response => {
+    //   // Set the pin's details into state
+    //   this.setState({
+    //     selectedPin: response.data,
+    //   });
+    // })
+    // .catch(console.warn);
   }
 
   // Click handler for delete place button
-  handleDeletePlaceClick(){
-    console.log('CLICKED!');
+  handleDeletePlaceClick() {
+    const {name} = this.state.selectedPin;
+
+    axios.delete(`${URL}/pin/${name}`)
+    .then(response => {
+      console.log('Response: ', response);
+    })
+    .catch(console.warn);
   }
 
   // Submit handler for add new place form
@@ -118,6 +124,9 @@ class App extends Component {
   }
 
   render() {
+
+    const {places, selectedPlace, showModal} = this.state;
+
     return (
       <div className="App">
 
@@ -125,14 +134,13 @@ class App extends Component {
 
         <div className="main-container">
           <SideBar
-            pin={this.state.selectedPin}
-            pinAdded={this.state.wasPinAdded}
+            place={selectedPlace}
             onClick={this.handleDeletePlaceClick}
           />
 
           <MapContainer
-            pins={this.state.pins}
-            onClick={this.handlePinClick}
+            places={places}
+            onClick={this.handlePlaceClick}
           />
         </div>
 
@@ -146,7 +154,7 @@ class App extends Component {
         </button>
 
         <AddPlaceModal
-          show={this.state.showModal}
+          show={showModal}
           closeCallBack={this.toggleModal}
           onSubmit={this.handleAddPlaceSubmit}
         />

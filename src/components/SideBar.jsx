@@ -38,13 +38,7 @@ class SideBar extends Component {
             </span>
           </h3>
 
-          {
-            this.state.showPinDetail &&
-            <PinDetail
-              pin={pin}
-              onClick={onClick}
-            />
-          }
+
         </div>
       </div>
     );
@@ -56,3 +50,11 @@ SideBar.propTypes = {
 };
 
 export default SideBar;
+
+// {
+//   this.state.showPinDetail &&
+//   <PinDetail
+//     pin={pin}
+//     onClick={onClick}
+//   />
+// }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import BeenThereMap from './BeenThereMap';
+import Map from './Map';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS;
 
@@ -20,18 +20,18 @@ class MapContainer extends Component {
 
   render() {
 
-    const {pins, onClick} = this.props;
+    const {places, onClick} = this.props;
 
     return (
       <div className="map">
 
-        <BeenThereMap
+        <Map
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=geometry,drawing,places`}
           loadingElement={<div style={{height: '100%'}} />}
           containerElement={<div style={{height: '90vh', width: '100vw'}} />}
           mapElement={<div style={{height: '100%'}} />}
           onClick={onClick}
-          pins={pins}
+          places={places}
         />
 
       </div>
@@ -40,12 +40,12 @@ class MapContainer extends Component {
 }
 
 MapContainer.propTypes = {
-  pins: PropTypes.array.isRequired,
+  places: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
 MapContainer.defaultProps = {
-  pins: [],
+  places: [],
 }
 
 export default MapContainer;
