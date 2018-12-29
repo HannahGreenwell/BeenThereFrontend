@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
-function BeenThereMap(props) {
+function Map(props) {
 
-  const {pins, onClick} = props;
+  const {places, onClick} = props;
 
   return (
     <GoogleMap
@@ -13,16 +13,16 @@ function BeenThereMap(props) {
     >
 
     {
-      pins.map(pin =>
+      places.map(place =>
         <Marker
-          position={{lat: pin.lat, lng: pin.lng,}}
-          key={`${pin.name}`}
-          onClick={() => onClick(pin.city, pin.name)}
+          position={{lat: place.lat, lng: place.lng,}}
+          key={`${place.name}`}
+          onClick={() => onClick(place.city, place.name)}
         >
 
           <InfoWindow>
             <div>
-              {pin.name}
+              {place.name}
             </div>
           </InfoWindow>
 
@@ -34,14 +34,14 @@ function BeenThereMap(props) {
   );
 }
 
-BeenThereMap.propTypes = {
-  pins: PropTypes.array.isRequired,
+Map.propTypes = {
+  places: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-BeenThereMap.defaultProps = {
-  pins: [],
+Map.defaultProps = {
+  places: [],
 };
 
 
-export default withGoogleMap(BeenThereMap);
+export default withGoogleMap(Map);
