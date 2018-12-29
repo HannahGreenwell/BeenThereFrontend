@@ -95,11 +95,14 @@ class App extends Component {
 
   // Click handler for delete place button
   handleDeletePlaceClick() {
-    const {name} = this.state.selectedPin;
+    const {lat, lng} = this.state.selectedPlace;
 
-    axios.delete(`${URL}/pin/${name}`)
+    axios.delete(`${URL}/place/${lat}/${lng}`)
     .then(response => {
-      console.log('Response: ', response);
+      this.setState({
+        places: response.data,
+        selectedPlace: {}
+      });
     })
     .catch(console.warn);
   }
