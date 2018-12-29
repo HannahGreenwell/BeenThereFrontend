@@ -2,14 +2,14 @@ import React from 'react';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
 import App from './App';
-import Login from './components/Login';
+import Signin from './components/Signin';
 import Signup from './components/Signup';
 
 const Routes = (
   <Router>
     <div>
       <Route exact path="/" component={App} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/signin" component={Signin} />
       <Route exact path="/signup" component={Signup} />
     </div>
   </Router>

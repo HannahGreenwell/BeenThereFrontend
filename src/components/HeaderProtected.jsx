@@ -12,9 +12,9 @@ function HeaderProtected() {
       <nav className="main-nav">
         <ul>
           <li>
-            <Link to="/login">
+            <Link to="/signin">
               <span className="yellow-bg">
-                Login
+                Sign In
               </span>
             </Link>
           </li>

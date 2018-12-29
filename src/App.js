@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // Handle users entering the site NOT through the login page
+    // Handle users entering the site NOT through the sign-in page
     if('localStorage' in window) {
       // Get JWT from localStorage
       const jwt = localStorage.getItem('authToken');
@@ -39,10 +39,10 @@ class App extends Component {
         // If the user has a JWT, set the token in the authorization header
         axios.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
       } else {
-        // If the user does not have a JWT, redirect to the login page
+        // If the user does not have a JWT, redirect to the sign-in page
         this.props.history.push({
-          pathname: '/login',
-          // state: {message: 'Please login to access that page'}
+          pathname: '/signin',
+          // state: {message: 'Please sign in to access that page'}
         });
       }
 
@@ -60,10 +60,10 @@ class App extends Component {
       this.setState({places: response.data});
     })
     .catch(error => {
-      // If an (authorization) error occurs, redirect to the login page
+      // If an (authorization) error occurs, redirect to the sign-in page
       this.props.history.push({
-        pathname: '/login',
-        // state: {message: 'Please login to access that page'}
+        pathname: '/signin',
+        // state: {message: 'Please sign in to access that page'}
       });
     });
   }
@@ -72,8 +72,8 @@ class App extends Component {
   handleSignOut() {
     // Remove JWT from localStorage
     localStorage.removeItem('authToken');
-    // Redirect to login page
-    this.props.history.push('/login');
+    // Redirect to sign-in page
+    this.props.history.push('/signin');
   }
 
   // Display/hide the modal

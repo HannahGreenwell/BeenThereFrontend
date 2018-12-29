@@ -8,7 +8,7 @@ import './LoginSignup.css';
 const URL = 'http://www.localhost:3000/user';
 // const URL = '/user';
 
-class Login extends Component {
+class Signin extends Component {
 
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ class Login extends Component {
     this.setState({passwordInput: event.target.value});
   }
 
-  // Login button submit handler
+  // Sign-in button submit handler
   handleSubmit(event) {
     event.preventDefault();
     // Make an axios post request to the backend to signin
@@ -52,7 +52,7 @@ class Login extends Component {
       }
     )
     .then(response => {
-      // If the signin was successful, save the returned JWT into the authorization header
+      // If the sign-in was successful, save the returned JWT into the authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
       // Store the JWT token in the browser's localStorage system
@@ -75,7 +75,7 @@ class Login extends Component {
         <HeaderProtected />
 
         <div className="login-box">
-          <h2>Login</h2>
+          <h2>Sign In</h2>
 
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -96,7 +96,7 @@ class Login extends Component {
               />
             </div>
 
-            <input type="submit" value="Login" />
+            <input type="submit" value="Sign In" />
           </form>
 
           <p className="error-msg">{this.state.error}</p>
@@ -106,4 +106,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signin;
