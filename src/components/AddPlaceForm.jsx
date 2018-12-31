@@ -12,13 +12,7 @@ class AddPlaceForm extends Component {
       description: '',
       lat: '',
       lng: '',
-      image: null,
     };
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -30,23 +24,16 @@ class AddPlaceForm extends Component {
     this.setState({name, lat, lng});
   }
 
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
+  handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value
+    });
   }
 
-  handleCategoryChange(event) {
-    this.setState({category: event.target.value});
-  }
-
-  // handleImageChange = event => {
-  //   this.setState({image: event.target.files[0]});
-  // }
-
-  handleDescriptionChange(event) {
-    this.setState({description: event.target.value});
-  }
-
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     const formData  = new FormData(event.target);
@@ -73,7 +60,7 @@ class AddPlaceForm extends Component {
             name="name"
             type="text"
             value={name}
-            onChange={this.handleNameChange} />
+            onChange={this.handleChange} />
         </div>
 
         <div>
@@ -81,7 +68,7 @@ class AddPlaceForm extends Component {
           <select
             name="category"
             value={category}
-            onChange={this.handleCategoryChange}
+            onChange={this.handleChange}
           >
             <option value="See & Do">See &amp; Do</option>
             <option value="Food & Drink">Food &amp; Drink</option>
@@ -95,7 +82,7 @@ class AddPlaceForm extends Component {
           <input
             name="image"
             type="file"
-            onChange={this.handleImageChange} />
+          />
         </div>
 
         <div>
@@ -103,7 +90,7 @@ class AddPlaceForm extends Component {
           <textarea
             name="description"
             value={description}
-            onChange={this.handleDescriptionChange}
+            onChange={this.handleChange}
           />
         </div>
 
