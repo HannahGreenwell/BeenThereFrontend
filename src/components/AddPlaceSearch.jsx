@@ -51,7 +51,7 @@ class AddPlaceSearch extends Component {
   render() {
 
     const {search, value, placeData, showAddPlaceForm} = this.state;
-    const {onSubmit} = this.props;
+    const {onAddPlaceSubmit} = this.props;
 
     return (
       <div>
@@ -91,7 +91,7 @@ class AddPlaceSearch extends Component {
           showAddPlaceForm  &&
           <AddPlaceForm
             placeData={placeData}
-            onSubmit={onSubmit}
+            onSubmit={onAddPlaceSubmit}
           />
         }
       </div>
@@ -100,7 +100,7 @@ class AddPlaceSearch extends Component {
 }
 
 AddPlaceSearch.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onAddPlaceSubmit: PropTypes.func.isRequired,
 }
 
 export default AddPlaceSearch;

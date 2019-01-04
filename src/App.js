@@ -72,9 +72,9 @@ class App extends Component {
   }
 
   // Display/hide the modal
-  toggleModal = () => {
+  closeModal = () => {
     this.setState({
-      showModal: !this.state.showModal
+      showModal: false
     });
   }
 
@@ -85,6 +85,14 @@ class App extends Component {
 
     this.setState({
       selectedPlace: clickedPlace,
+    });
+  }
+
+  // New Place
+  handleAddPlaceClick = () => {
+    this.setState({
+      showModal: true,
+      formType: 'add'
     });
   }
 
@@ -169,7 +177,7 @@ class App extends Component {
 
         <button
           className="add-place-btn"
-          onClick={this.toggleModal}
+          onClick={this.handleAddPlaceClick}
         >
           <i className="material-icons">
             add_location
@@ -180,7 +188,7 @@ class App extends Component {
           show={showModal}
           formType={formType}
           selectedPlace={selectedPlace}
-          closeCallBack={this.toggleModal}
+          closeModal={this.closeModal}
           onAddPlaceSubmit={this.handleAddPlaceSubmit}
           onEditPlaceSubmit={this.handleEditPlaceSubmit}
         />

@@ -15,7 +15,7 @@ class Modal extends Component {
 
   render() {
 
-    const {show, closeCallBack, onAddPlaceSubmit, onEditPlaceSubmit, formType, selectedPlace} = this.props;
+    const {show, closeModal, onAddPlaceSubmit, onEditPlaceSubmit, formType, selectedPlace} = this.props;
 
     return (
       <div
@@ -24,14 +24,14 @@ class Modal extends Component {
 
         <div
           className="overlay"
-          onClick={closeCallBack}>
+          onClick={closeModal}>
         </div>
 
         <div className="modal-content">
           <button
             title="Close"
             className="close-modal"
-            onClick={closeCallBack}>
+            onClick={closeModal}>
             <i className="material-icons">
               close
             </i>
@@ -56,9 +56,11 @@ class Modal extends Component {
 
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
-  closeCallBack: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   onAddPlaceSubmit: PropTypes.func.isRequired,
   onEditPlaceSubmit: PropTypes.func.isRequired,
+  formType: PropTypes.string.isRequired,
+  selectedPlace: PropTypes.object
 };
 
 export default Modal;
