@@ -18,7 +18,7 @@ class SideBar extends Component {
 
   render() {
 
-    const {place, onClick} = this.props;
+    const {place, onDeleteClick, onEditClick} = this.props;
 
     return (
       <div className="sidebar">
@@ -42,7 +42,8 @@ class SideBar extends Component {
             this.state.showPlaceDetail &&
             <PlaceDetail
               place={place}
-              onClick={onClick}
+              onDeleteClick={onDeleteClick}
+              onEditClick={onEditClick}
             />
           }
 
@@ -54,6 +55,8 @@ class SideBar extends Component {
 
 SideBar.propTypes = {
   place: PropTypes.object,
+  onDeleteClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 export default SideBar;

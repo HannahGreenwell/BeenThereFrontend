@@ -34,8 +34,6 @@
 }
 
 .modal .modal-content h3 {
-  display: inline-block;
-  width: 80%;
   padding-bottom: 20px;
 }
 
@@ -44,9 +42,9 @@
 }
 
 .modal .modal-content .close-modal {
-  display: inline-block;
-  width: 20%;
-  text-align: right;
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
 .modal .modal-content .close-modal:hover {

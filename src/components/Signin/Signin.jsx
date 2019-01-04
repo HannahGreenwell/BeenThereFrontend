@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import HeaderProtected from './HeaderProtected';
+import HeaderProtected from '../Header/HeaderProtected';
 
-import './LoginSignup.css';
+import './Signin.css';
 
 const URL = 'http://www.localhost:3000/user';
 // const URL = '/user';

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function PlaceDetail(props) {
 
-  const {place, onClick} = props;
-  
+  const {place, onDeleteClick, onEditClick} = props;
+
   return (
     <div>
     {
@@ -21,10 +21,16 @@ function PlaceDetail(props) {
 
         <p className="description">{place.description}</p>
 
-        <i className="material-icons edit-delete-btn">edit</i>
         <i
           className="material-icons edit-delete-btn"
-          onClick={onClick}
+          onClick={onEditClick}
+          >
+          edit
+        </i>
+
+        <i
+          className="material-icons edit-delete-btn"
+          onClick={onDeleteClick}
         >
           delete
         </i>
@@ -38,7 +44,8 @@ function PlaceDetail(props) {
 
 PlaceDetail.propTypes = {
   place: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 export default PlaceDetail;

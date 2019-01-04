@@ -18,14 +18,10 @@ class AddPlaceSearch extends Component {
       },
       showAddPlaceForm: false,
     };
-
-    this.handleSelectSuggest = this.handleSelectSuggest.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
   }
 
   // Handle Google Places Suggest text field input
-  handleInputChange(event) {
+  handleInputChange = event => {
     this.setState({
       search: event.target.value,
       value: event.target.value
@@ -33,8 +29,8 @@ class AddPlaceSearch extends Component {
   }
 
   // Handle click on Google Places dropdown suggestion
-  handleSelectSuggest(geocodedPrediction, originalPrediction) {
-    console.log('SELECTED:', geocodedPrediction, originalPrediction);
+  handleSelectSuggest = (geocodedPrediction, originalPrediction) => {
+    // console.log('SELECTED:', geocodedPrediction, originalPrediction);
     // Save the Google Place data into state and update showAddPlaceForm to true
     this.setState({
       search: '',
@@ -48,7 +44,7 @@ class AddPlaceSearch extends Component {
   }
 
   // Hide the add place form if the user clicks back into the Google Places Suggest field
-  handleFocus() {
+  handleFocus = () => {
     this.setState({showAddPlaceForm: false});
   }
 
@@ -59,6 +55,11 @@ class AddPlaceSearch extends Component {
 
     return (
       <div>
+        <h3>
+          <span className="yellow">
+            Add New Place
+          </span>
+        </h3>
 
         <ReactGooglePlacesSuggest
           googleMaps={window.google.maps}
@@ -93,7 +94,6 @@ class AddPlaceSearch extends Component {
             onSubmit={onSubmit}
           />
         }
-
       </div>
     );
   }

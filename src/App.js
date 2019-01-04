@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-import Header from './components/Header';
-import MapContainer from './components/MapContainer';
-import SideBar from './components/SideBar';
-import AddPlaceModal from './components/AddPlaceModal';
+import Header from './components/Header/Header';
+import MapContainer from './components/Map/MapContainer';
+import SideBar from './components/Sidebar/SideBar';
+import Modal from './components/Modal';
 
 const URL = 'http://www.localhost:3000/user';
 // const URL = '/user';
@@ -19,13 +19,8 @@ class App extends Component {
       places: [],
       selectedPlace: {},
       showModal: false,
+      formType: 'add'
     };
-
-    this.handleSignOut = this.handleSignOut.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.handlePlaceClick = this.handlePlaceClick.bind(this);
-    this.handleDeletePlaceClick = this.handleDeletePlaceClick.bind(this);
-    this.handleAddPlaceSubmit = this.handleAddPlaceSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -52,8 +47,8 @@ class App extends Component {
   }
 
   // Makes an axios request to the backend for the user's saved places
-  fetchPlaces() {
-    axios.get(`${URL}/map`)
+  fetchPlaces = () => {
+    axios.get(`${URL}/places`)
     .then(response => {
       // Save the returned pins array into state
       // Note: user's with no pins will return an empty array
@@ -69,7 +64,7 @@ class App extends Component {
   }
 
   // Sign out
-  handleSignOut() {
+  handleSignOut = () => {
     // Remove JWT from localStorage
     localStorage.removeItem('authToken');
     // Redirect to sign-in page
@@ -77,14 +72,14 @@ class App extends Component {
   }
 
   // Display/hide the modal
-  toggleModal() {
+  toggleModal = () => {
     this.setState({
       showModal: !this.state.showModal
     });
   }
 
-  // Click handler for map pins
-  handlePlaceClick(lat, lng) {
+  // Read Place Details
+  handlePlaceClick = (lat, lng) => {
     const {places} = this.state;
     const clickedPlace = places.find(place => place.lat === lat && place.lng);
 
@@ -93,22 +88,8 @@ class App extends Component {
     });
   }
 
-  // Click handler for delete place button
-  handleDeletePlaceClick() {
-    const {lat, lng} = this.state.selectedPlace;
-
-    axios.delete(`${URL}/place/${lat}/${lng}`)
-    .then(response => {
-      this.setState({
-        places: response.data,
-        selectedPlace: {}
-      });
-    })
-    .catch(console.warn);
-  }
-
-  // Submit handler for add new place form
-  handleAddPlaceSubmit(formData) {
+  // Create Place
+  handleAddPlaceSubmit = formData => {
     // Make axios post request to backend to create new place
     axios.post(`${URL}/place`, formData)
     .then(response => {
@@ -123,9 +104,49 @@ class App extends Component {
     .catch(console.warn);
   }
 
+  // Edit Place
+  handleEditPlaceClick = () => {
+    this.setState({
+      formType: 'edit',
+      showModal: true
+    });
+  }
+
+  // Update Place
+  handleEditPlaceSubmit = formData => {
+    const {lat, lng} = this.state.selectedPlace;
+
+    axios.put(`${URL}/place/${lat}/${lng}`, formData)
+    .then(response => {
+      const updatedPlaces = this.state.places.filter(p => p.lat !== lat && p.lng !== lng);
+      const updatedPlace = response.data;
+
+      this.setState({
+        places: [...updatedPlaces, updatedPlace],
+        selectedPlace: updatedPlace,
+        showModal: false
+      });
+    })
+    .catch(console.warn);
+  }
+
+  // Delete Place
+  handleDeletePlaceClick = () => {
+    const {lat, lng} = this.state.selectedPlace;
+
+    axios.delete(`${URL}/place/${lat}/${lng}`)
+    .then(response => {
+      this.setState({
+        places: response.data,
+        selectedPlace: {}
+      });
+    })
+    .catch(console.warn);
+  }
+
   render() {
 
-    const {places, selectedPlace, showModal} = this.state;
+    const {places, selectedPlace, showModal, formType} = this.state;
 
     return (
       <div className="App">
@@ -135,7 +156,8 @@ class App extends Component {
         <div className="main-container">
           <SideBar
             place={selectedPlace}
-            onClick={this.handleDeletePlaceClick}
+            onDeleteClick={this.handleDeletePlaceClick}
+            onEditClick={this.handleEditPlaceClick}
           />
 
           <MapContainer
@@ -153,10 +175,13 @@ class App extends Component {
           </i>
         </button>
 
-        <AddPlaceModal
+        <Modal
           show={showModal}
+          formType={formType}
+          selectedPlace={selectedPlace}
           closeCallBack={this.toggleModal}
-          onSubmit={this.handleAddPlaceSubmit}
+          onAddPlaceSubmit={this.handleAddPlaceSubmit}
+          onEditPlaceSubmit={this.handleEditPlaceSubmit}
         />
       </div>
     );

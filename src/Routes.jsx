@@ -2,8 +2,8 @@ import React from 'react';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
 import App from './App';
-import Signin from './components/Signin';
-import Signup from './components/Signup';
+import Signin from './components/Signin/Signin';
+import Signup from './components/Signin/Signup';
 
 const Routes = (
   <Router>

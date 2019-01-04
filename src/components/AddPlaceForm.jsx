@@ -12,6 +12,7 @@ class AddPlaceForm extends Component {
       description: '',
       lat: '',
       lng: '',
+      image: null,
     };
   }
 
@@ -32,6 +33,10 @@ class AddPlaceForm extends Component {
       [name]: value
     });
   }
+
+  // handleImageChange = event => {
+  //   this.setState({image: event.target.files[0]});
+  // }
 
   handleSubmit = event => {
     event.preventDefault();
