@@ -35,10 +35,17 @@ class EditPlaceForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    const formData = new FormData(event.target);
+    const {name, category, description, lat, lng} = this.state;
+    const formData = {name, category, description, lat, lng};
     this.props.onEditPlaceSubmit(formData);
   }
+
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //
+  //   const formData = new FormData(event.target);
+  //   this.props.onEditPlaceSubmit(formData);
+  // }
 
   render() {
 
@@ -75,14 +82,6 @@ class EditPlaceForm extends Component {
               <option value="Nightlife">Nightlife</option>
               <option value="Shop">Shop</option>
             </select>
-          </div>
-
-          <div>
-            <label>Image</label>
-            <input
-              name="image"
-              type="file"
-            />
           </div>
 
           <div>
