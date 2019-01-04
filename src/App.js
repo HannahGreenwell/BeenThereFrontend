@@ -136,8 +136,9 @@ class App extends Component {
 
     axios.delete(`${URL}/place/${lat}/${lng}`)
     .then(response => {
+      const updatedPlaces = this.state.places.filter(p => p.lat !== lat && p.lng !== lng);
       this.setState({
-        places: response.data,
+        places: updatedPlaces,
         selectedPlace: {}
       });
     })
