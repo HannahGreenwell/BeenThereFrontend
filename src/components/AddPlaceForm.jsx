@@ -57,59 +57,67 @@ class AddPlaceForm extends Component {
     const {name, category, description, lat, lng} = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
+        <h3>
+          <span className="yellow">
+            Add New Place
+          </span>
+        </h3>
 
-        <div>
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            value={name}
-            onChange={this.handleChange} />
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Name</label>
+            <input
+              name="name"
+              type="text"
+              value={name}
+              onChange={this.handleChange} />
+          </div>
 
-        <div>
-          <label>Category</label>
-          <select
-            name="category"
-            value={category}
-            onChange={this.handleChange}
-          >
-            <option value="See & Do">See &amp; Do</option>
-            <option value="Food & Drink">Food &amp; Drink</option>
-            <option value="Nightlife">Nightlife</option>
-            <option value="Shop">Shop</option>
-          </select>
-        </div>
+          <div>
+            <label>Category</label>
+            <select
+              name="category"
+              value={category}
+              onChange={this.handleChange}
+            >
+              <option value="See & Do">See &amp; Do</option>
+              <option value="Food & Drink">Food &amp; Drink</option>
+              <option value="Nightlife">Nightlife</option>
+              <option value="Shop">Shop</option>
+            </select>
+          </div>
 
-        <div>
-          <label>Image</label>
-          <input
-            name="image"
-            type="file"
-          />
-        </div>
+          <div>
+            <label>Image</label>
+            <input
+              name="image"
+              type="file"
+            />
+          </div>
 
-        <div>
-          <label>Description</label>
-          <textarea
-            name="description"
-            value={description}
-            onChange={this.handleChange}
-          />
-        </div>
+          <div>
+            <label>Description</label>
+            <textarea
+              name="description"
+              value={description}
+              onChange={this.handleChange}
+            />
+          </div>
 
-        <input type="submit" value="Add Place" />
+          <input type="submit" value="Add Place" />
 
-        <input type="hidden" value={lat} name="lat" />
-        <input type="hidden" value={lng} name="lng" />
-      </form>
+          <input type="hidden" value={lat} name="lat" />
+          <input type="hidden" value={lng} name="lng" />
+        </form>
+      </div>
     );
   }
 }
 
 AddPlaceForm.propTypes = {
   placeData: PropTypes.object,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default AddPlaceForm;

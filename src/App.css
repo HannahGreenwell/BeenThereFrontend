@@ -75,7 +75,6 @@ body {
 
 h2 {
   line-height: 1.7em;
-  /* padding-bottom: 5px; */
 }
 
 button {
@@ -84,13 +83,14 @@ button {
 }
 
 input[type=text], input[type=email], input[type=password] {
-  padding: 5px 8px;
+  border: solid 1px #CCC;
+  padding: 7px 8px;
   width: 100%;
 }
 
 input[type=submit] {
   border: solid 1px #CCC;
-  padding: 5px 8px;
+  padding: 6px 8px;
   margin-top: 15px;
 }
 

@@ -6,9 +6,6 @@ import Header from './components/Header/Header';
 import MapContainer from './components/Map/MapContainer';
 import SideBar from './components/Sidebar/SideBar';
 import Modal from './components/Modal';
-import AddPlaceSearch from './components/AddPlaceSearch'
-import AddPlaceForm from './components/AddPlaceForm'
-
 
 const URL = 'http://www.localhost:3000/user';
 // const URL = '/user';
@@ -21,14 +18,8 @@ class App extends Component {
     this.state = {
       places: [],
       selectedPlace: {},
-      showSearchModal: false,
-      showAddModal: false,
-      showEditModal: false,
-      showDeleteModal: false,
-      placeData: {
-        geocodedPrediction: {},
-        originalPrediction: {},
-      }
+      showModal: false,
+      formType: 'add'
     };
   }
 
@@ -60,7 +51,7 @@ class App extends Component {
     axios.get(`${URL}/places`)
     .then(response => {
       // Save the returned pins array into state
-      // Note: users with no pins will return an empty array
+      // Note: user's with no pins will return an empty array
       this.setState({places: response.data});
     })
     .catch(error => {
@@ -80,12 +71,10 @@ class App extends Component {
     this.props.history.push('/signin');
   }
 
+  // Display/hide the modal
   closeModal = () => {
     this.setState({
-      showSearchModal: false,
-      showAddModal: false,
-      showEditModal: false,
-      showDeleteModal: false
+      showModal: false
     });
   }
 
@@ -102,18 +91,8 @@ class App extends Component {
   // New Place
   handleAddPlaceClick = () => {
     this.setState({
-      showSearchModal: true,
-    });
-  }
-
-  handleSearchPlaceChange = (geocodedPrediction, originalPrediction) => {
-    this.setState({
-      showSearchModal: false,
-      showAddModal: true,
-      placeData: {
-        geocodedPrediction,
-        originalPrediction
-      }
+      showModal: true,
+      formType: 'add'
     });
   }
 
@@ -127,7 +106,7 @@ class App extends Component {
       this.setState({
         places: [...this.state.places, place],
         selectedPlace: place,
-        showAddModal: false
+        showModal: false,
       })
     })
     .catch(console.warn);
@@ -176,15 +155,7 @@ class App extends Component {
 
   render() {
 
-    const {
-      places,
-      selectedPlace,
-      showSearchModal,
-      showAddModal,
-      showEditModal,
-      showDeleteModal,
-      placeData
-    } = this.state;
+    const {places, selectedPlace, showModal, formType} = this.state;
 
     return (
       <div className="App">
@@ -213,30 +184,14 @@ class App extends Component {
           </i>
         </button>
 
-        {
-          showSearchModal &&
-          <Modal
-            closeModal={this.closeModal}
-          >
-            <AddPlaceSearch
-              onChange={this.handleSearchPlaceChange}
-            />
-          </Modal>
-        }
-
-        {
-          showAddModal &&
-          <Modal
-            closeModal={this.closeModal}
-          >
-            <AddPlaceForm
-              placeData={placeData}
-              onSubmit={this.handleAddPlaceSubmit}
-            />
-          </Modal>
-        }
-
-
+        <Modal
+          show={showModal}
+          formType={formType}
+          selectedPlace={selectedPlace}
+          closeModal={this.closeModal}
+          onAddPlaceSubmit={this.handleAddPlaceSubmit}
+          onEditPlaceSubmit={this.handleEditPlaceSubmit}
+        />
       </div>
     );
   }

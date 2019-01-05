@@ -50,3 +50,11 @@
 .modal .modal-content .close-modal:hover {
   color: #AAA;
 }
+
+.search-place-input {
+  margin-top: 15px;
+}
+
+.search-modal-wrapper {
+  padding-bottom: 150px;
+}

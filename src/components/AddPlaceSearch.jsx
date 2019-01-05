@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 
+import AddPlaceForm from './AddPlaceForm';
+
 class AddPlaceSearch extends Component {
 
   constructor(props) {
@@ -10,17 +12,6 @@ class AddPlaceSearch extends Component {
     this.state = {
       search: '',
       value: '',
-      placeData: {
-        geocodedPrediction: {},
-        originalPrediction: {},
-      },
-      showAddPlaceForm: false,
-      name: '',
-      category: 'See & Do',
-      description: '',
-      lat: '',
-      lng: '',
-      image: null,
     };
   }
 
@@ -34,32 +25,20 @@ class AddPlaceSearch extends Component {
 
   // Handle click on Google Places dropdown suggestion
   handleSelectSuggest = (geocodedPrediction, originalPrediction) => {
-    // console.log('SELECTED:', geocodedPrediction, originalPrediction);
-    // Save the Google Place data into state and update showAddPlaceForm to true
     this.setState({
       search: '',
       value: originalPrediction.description,
-      placeData: {
-        geocodedPrediction,
-        originalPrediction
-      },
-      showAddPlaceForm: true,
     });
-  }
 
-  // Hide the add place form if the user clicks back into the Google Places Suggest field
-  handleFocus = () => {
-    this.setState({showAddPlaceForm: false});
+    this.props.onChange(geocodedPrediction, originalPrediction);
   }
 
   render() {
 
-    const {search, value, placeData, showAddPlaceForm} = this.state;
-    const {name, category, description, lat, lng} = this.state;
-    const {onAddPlaceSubmit} = this.props;
+    const {search, value, placeData} = this.state;
 
     return (
-      <div>
+      <div className="search-modal-wrapper">
         <h3>
           <span className="yellow">
             Add New Place
@@ -75,78 +54,25 @@ class AddPlaceSearch extends Component {
             <div className="customWrapper">
               {
                 prediction
-                  ? prediction.description
-                  : "Sorry, place not found"
+                ? prediction.description
+                : "Sorry, place not found"
               }
             </div>
           )}
         >
-          <label>Search</label>
+
           <input
             type="text"
             value={value}
             placeholder="Search for a place"
             onChange={this.handleInputChange}
-            onFocus={this.handleFocus}
-            className="place-search-input"
+            className="search-place-input"
           />
 
         </ReactGooglePlacesSuggest>
-
-        <form onSubmit={this.handleSubmit}>
-
-          <div>
-            <label>Name</label>
-            <input
-              name="name"
-              type="text"
-              value={name}
-              onChange={this.handleChange} />
-          </div>
-
-          <div>
-            <label>Category</label>
-            <select
-              name="category"
-              value={category}
-              onChange={this.handleChange}
-            >
-              <option value="See & Do">See &amp; Do</option>
-              <option value="Food & Drink">Food &amp; Drink</option>
-              <option value="Nightlife">Nightlife</option>
-              <option value="Shop">Shop</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Image</label>
-            <input
-              name="image"
-              type="file"
-            />
-          </div>
-
-          <div>
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={description}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <input type="submit" value="Add Place" />
-
-          <input type="hidden" value={lat} name="lat" />
-          <input type="hidden" value={lng} name="lng" />
-        </form>
       </div>
     );
   }
-}
-
-AddPlaceSearch.propTypes = {
-  onAddPlaceSubmit: PropTypes.func.isRequired,
 }
 
 export default AddPlaceSearch;
