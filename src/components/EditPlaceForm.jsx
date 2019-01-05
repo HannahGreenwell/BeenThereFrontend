@@ -37,7 +37,7 @@ class EditPlaceForm extends Component {
     event.preventDefault();
     const {name, category, description, lat, lng} = this.state;
     const formData = {name, category, description, lat, lng};
-    this.props.onEditPlaceSubmit(formData);
+    this.props.onSubmit(formData);
   }
 
   // handleSubmit = event => {

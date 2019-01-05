@@ -8,6 +8,7 @@ import SideBar from './components/Sidebar/SideBar';
 import Modal from './components/Modal';
 import AddPlaceSearch from './components/AddPlaceSearch'
 import AddPlaceForm from './components/AddPlaceForm'
+import EditPlaceForm from './components/EditPlaceForm'
 
 
 const URL = 'http://www.localhost:3000/user';
@@ -136,8 +137,7 @@ class App extends Component {
   // Edit Place
   handleEditPlaceClick = () => {
     this.setState({
-      formType: 'edit',
-      showModal: true
+      showEditModal: true
     });
   }
 
@@ -153,7 +153,7 @@ class App extends Component {
       this.setState({
         places: [...updatedPlaces, updatedPlace],
         selectedPlace: updatedPlace,
-        showModal: false
+        showEditModal: false
       });
     })
     .catch(console.warn);
@@ -232,6 +232,18 @@ class App extends Component {
             <AddPlaceForm
               placeData={placeData}
               onSubmit={this.handleAddPlaceSubmit}
+            />
+          </Modal>
+        }
+
+        {
+          showEditModal &&
+          <Modal
+            closeModal={this.closeModal}
+          >
+            <EditPlaceForm
+              selectedPlace={selectedPlace}
+              onSubmit={this.handleEditPlaceSubmit}
             />
           </Modal>
         }
