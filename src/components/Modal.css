@@ -22,7 +22,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 68%;
+  max-height: 90%;
   width: 500px;
   overflow: auto;
   background-color: #FFF;
@@ -34,7 +34,7 @@
 }
 
 .modal .modal-content h3 {
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 
 .modal .modal-content h3 .yellow {

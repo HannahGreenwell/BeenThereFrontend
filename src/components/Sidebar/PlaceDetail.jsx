@@ -11,13 +11,13 @@ function PlaceDetail(props) {
       place.lat
       ?
       <div>
+        <img src={place.image} alt={place.name} />
+
         <h2>
           <span className="yellow">{place.name}</span>
         </h2>
 
         <p className="category">{place.category}</p>
-
-        <img src={place.image} alt={place.name} />
 
         <p className="description">{place.description}</p>
 

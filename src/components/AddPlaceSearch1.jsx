@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 
+import AddPlaceForm from './AddPlaceForm';
+
 class AddPlaceSearch extends Component {
 
   constructor(props) {
@@ -15,12 +17,6 @@ class AddPlaceSearch extends Component {
         originalPrediction: {},
       },
       showAddPlaceForm: false,
-      name: '',
-      category: 'See & Do',
-      description: '',
-      lat: '',
-      lng: '',
-      image: null,
     };
   }
 
@@ -55,7 +51,6 @@ class AddPlaceSearch extends Component {
   render() {
 
     const {search, value, placeData, showAddPlaceForm} = this.state;
-    const {name, category, description, lat, lng} = this.state;
     const {onAddPlaceSubmit} = this.props;
 
     return (
@@ -81,7 +76,7 @@ class AddPlaceSearch extends Component {
             </div>
           )}
         >
-          <label>Search</label>
+
           <input
             type="text"
             value={value}
@@ -93,53 +88,13 @@ class AddPlaceSearch extends Component {
 
         </ReactGooglePlacesSuggest>
 
-        <form onSubmit={this.handleSubmit}>
-
-          <div>
-            <label>Name</label>
-            <input
-              name="name"
-              type="text"
-              value={name}
-              onChange={this.handleChange} />
-          </div>
-
-          <div>
-            <label>Category</label>
-            <select
-              name="category"
-              value={category}
-              onChange={this.handleChange}
-            >
-              <option value="See & Do">See &amp; Do</option>
-              <option value="Food & Drink">Food &amp; Drink</option>
-              <option value="Nightlife">Nightlife</option>
-              <option value="Shop">Shop</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Image</label>
-            <input
-              name="image"
-              type="file"
-            />
-          </div>
-
-          <div>
-            <label>Description</label>
-            <textarea
-              name="description"
-              value={description}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <input type="submit" value="Add Place" />
-
-          <input type="hidden" value={lat} name="lat" />
-          <input type="hidden" value={lng} name="lng" />
-        </form>
+        {
+          showAddPlaceForm  &&
+          <AddPlaceForm
+            placeData={placeData}
+            onSubmit={onAddPlaceSubmit}
+          />
+        }
       </div>
     );
   }
