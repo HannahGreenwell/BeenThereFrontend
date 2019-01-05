@@ -9,6 +9,7 @@ import Modal from './components/Modal';
 import AddPlaceSearch from './components/AddPlaceSearch'
 import AddPlaceForm from './components/AddPlaceForm'
 import EditPlaceForm from './components/EditPlaceForm'
+import DeletePlaceConfirm from './components/DeletePlaceConfirm'
 
 
 const URL = 'http://www.localhost:3000/user';
@@ -159,8 +160,14 @@ class App extends Component {
     .catch(console.warn);
   }
 
-  // Delete Place
   handleDeletePlaceClick = () => {
+    this.setState({
+      showDeleteModal: true
+    });
+  }
+
+  // Delete Place
+  handleDeletePlaceConfirm = () => {
     const {lat, lng} = this.state.selectedPlace;
 
     axios.delete(`${URL}/place/${lat}/${lng}`)
@@ -168,7 +175,8 @@ class App extends Component {
       const updatedPlaces = this.state.places.filter(p => p.lat !== lat && p.lng !== lng);
       this.setState({
         places: updatedPlaces,
-        selectedPlace: {}
+        selectedPlace: {},
+        showDeleteModal: false
       });
     })
     .catch(console.warn);
@@ -194,8 +202,8 @@ class App extends Component {
         <div className="main-container">
           <SideBar
             place={selectedPlace}
-            onDeleteClick={this.handleDeletePlaceClick}
             onEditClick={this.handleEditPlaceClick}
+            onDeleteClick={this.handleDeletePlaceClick}
           />
 
           <MapContainer
@@ -248,7 +256,18 @@ class App extends Component {
           </Modal>
         }
 
-
+        {
+          showDeleteModal &&
+          <Modal
+            closeModal={this.closeModal}
+          >
+            <DeletePlaceConfirm
+              selectedPlace={selectedPlace}
+              onClick={this.handleDeletePlaceConfirm}
+              closeModal={this.closeModal}
+            />
+          </Modal>
+        }
       </div>
     );
   }

@@ -58,3 +58,21 @@
 .search-modal-wrapper {
   padding-bottom: 150px;
 }
+
+p.delete-confirmation {
+  margin-top: 15px;
+}
+
+span.bold {
+  font-weight: 600;
+}
+
+button.delete {
+  border: solid 1px #CCC;
+  padding: 6px 8px;
+  margin: 20px 15px 0 0;
+}
+
+button.delete:hover {
+  background-color: #CCC;
+}

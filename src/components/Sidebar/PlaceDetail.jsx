@@ -20,7 +20,7 @@ function PlaceDetail(props) {
         <p className="category">{place.category}</p>
 
         <p className="description">{place.description}</p>
-
+        
         <i
           className="material-icons edit-delete-btn"
           onClick={onEditClick}

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 
-import AddPlaceForm from './AddPlaceForm';
-
 class AddPlaceSearch extends Component {
 
   constructor(props) {
@@ -35,7 +33,7 @@ class AddPlaceSearch extends Component {
 
   render() {
 
-    const {search, value, placeData} = this.state;
+    const {search, value} = this.state;
 
     return (
       <div className="search-modal-wrapper">
@@ -74,5 +72,9 @@ class AddPlaceSearch extends Component {
     );
   }
 }
+
+AddPlaceSearch.propTypes = {
+  onChange: PropTypes.func.isRequired
+};
 
 export default AddPlaceSearch;

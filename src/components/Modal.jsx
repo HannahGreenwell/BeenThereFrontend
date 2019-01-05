@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditPlaceForm from './EditPlaceForm'
 import './Modal.css';
 
 function Modal(props) {

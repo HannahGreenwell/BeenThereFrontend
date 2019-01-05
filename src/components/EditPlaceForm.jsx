@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class EditPlaceForm extends Component {
   constructor(props) {
@@ -102,5 +103,10 @@ class EditPlaceForm extends Component {
     );
   }
 }
+
+EditPlaceForm.propTypes = {
+  selectedPlace: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default EditPlaceForm;
