@@ -35,24 +35,11 @@ class AddPlaceForm extends Component {
     });
   }
 
-  // handleImageChange = event => {
-  //   this.setState({image: event.target.files[0]});
-  // }
-
   handleSubmit = event => {
     event.preventDefault();
 
     const formData  = new FormData(event.target);
     this.props.onSubmit(formData);
-
-    // this.setState({
-    //   name: '',
-    //   address: '',
-    //   category: 'See & Do',
-    //   description: '',
-    //   lat: '',
-    //   lng: ''
-    // });
   }
 
   render() {

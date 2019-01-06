@@ -10,6 +10,7 @@ import AddPlaceSearch from './components/AddPlaceSearch'
 import AddPlaceForm from './components/AddPlaceForm'
 import EditPlaceForm from './components/EditPlaceForm'
 import DeletePlaceConfirm from './components/DeletePlaceConfirm'
+import LoadingModal from './components/LoadingModal'
 
 
 const URL = 'http://www.localhost:3000/user';
@@ -27,6 +28,7 @@ class App extends Component {
       showAddModal: false,
       showEditModal: false,
       showDeleteModal: false,
+      showLoadingModal: false,
       placeData: {
         geocodedPrediction: {},
         originalPrediction: {},
@@ -87,7 +89,8 @@ class App extends Component {
       showSearchModal: false,
       showAddModal: false,
       showEditModal: false,
-      showDeleteModal: false
+      showDeleteModal: false,
+      showLoadingModal: false
     });
   }
 
@@ -121,6 +124,11 @@ class App extends Component {
 
   // Create Place
   handleAddPlaceSubmit = formData => {
+    this.setState({
+      showAddModal: false,
+      showLoadingModal: true
+    });
+
     // Make axios post request to backend to create new place
     axios.post(`${URL}/place`, formData)
     .then(response => {
@@ -129,7 +137,7 @@ class App extends Component {
       this.setState({
         places: [...this.state.places, place],
         selectedPlace: place,
-        showAddModal: false
+        showLoadingModal: false
       })
     })
     .catch(console.warn);
@@ -144,6 +152,11 @@ class App extends Component {
 
   // Update Place
   handleEditPlaceSubmit = formData => {
+    this.setState({
+      showEditModal: false,
+      showLoadingModal: true
+    });
+
     const {lat, lng} = this.state.selectedPlace;
 
     axios.put(`${URL}/place/${lat}/${lng}`, formData)
@@ -154,7 +167,7 @@ class App extends Component {
       this.setState({
         places: [...updatedPlaces, updatedPlace],
         selectedPlace: updatedPlace,
-        showEditModal: false
+        showLoadingModal: false
       });
     })
     .catch(console.warn);
@@ -191,6 +204,7 @@ class App extends Component {
       showAddModal,
       showEditModal,
       showDeleteModal,
+      showLoadingModal,
       placeData
     } = this.state;
 
@@ -266,6 +280,15 @@ class App extends Component {
               onClick={this.handleDeletePlaceConfirm}
               closeModal={this.closeModal}
             />
+          </Modal>
+        }
+
+        {
+          showLoadingModal &&
+          <Modal
+            closeModal={this.closeModal}
+          >
+            <LoadingModal />
           </Modal>
         }
       </div>
