@@ -17,10 +17,12 @@ function PlaceDetail(props) {
           <span className="yellow">{place.name}</span>
         </h2>
 
-        <p className="category">{place.category}</p>
+        <h4 className="category">{place.category}</h4>
 
         <p className="description">{place.description}</p>
-        
+
+        <p className="address">{place.address}</p>
+
         <i
           className="material-icons edit-delete-btn"
           onClick={onEditClick}

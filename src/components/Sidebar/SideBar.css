@@ -19,14 +19,18 @@
 
 .category {
   font-weight: 700;
-  padding: 5px 0;
+  /* padding-: 5px 0; */
+}
+
+.address {
+  font-style: italic;
 }
 
 .edit-delete-btn {
   border: solid 1px #CCC;
   border-radius: 50%;
   padding: 5px;
-  margin: 15px 10px 5px 0;
+  margin: 10px 10px 5px 0;
 }
 
 .edit-delete-btn:hover {

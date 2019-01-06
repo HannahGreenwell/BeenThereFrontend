@@ -8,21 +8,22 @@ class AddPlaceForm extends Component {
 
     this.state = {
       name: '',
+      address: '',
       category: 'See & Do',
       description: '',
       lat: '',
-      lng: '',
-      image: null,
+      lng: ''
     };
   }
 
   componentDidMount() {
     const {geocodedPrediction, originalPrediction} = this.props.placeData;
     const name = originalPrediction.description.split(',')[0];
+    const address = geocodedPrediction.formatted_address;
     const lat = geocodedPrediction.geometry.location.lat();
     const lng = geocodedPrediction.geometry.location.lng();
 
-    this.setState({name, lat, lng});
+    this.setState({name, address, lat, lng});
   }
 
   handleChange = event => {
@@ -44,17 +45,18 @@ class AddPlaceForm extends Component {
     const formData  = new FormData(event.target);
     this.props.onSubmit(formData);
 
-    this.setState({
-      name: '',
-      category: 'See & Do',
-      description: '',
-      lat: '',
-      lng: ''
-    });
+    // this.setState({
+    //   name: '',
+    //   address: '',
+    //   category: 'See & Do',
+    //   description: '',
+    //   lat: '',
+    //   lng: ''
+    // });
   }
 
   render() {
-    const {name, category, description, lat, lng} = this.state;
+    const {name, address, category, description, lat, lng} = this.state;
 
     return (
       <div>
@@ -75,6 +77,15 @@ class AddPlaceForm extends Component {
           </div>
 
           <div>
+            <label>Address</label>
+            <input
+              name="address"
+              type="text"
+              value={address}
+              onChange={this.handleChange} />
+          </div>
+
+          <div>
             <label>Category</label>
             <select
               name="category"
@@ -89,19 +100,19 @@ class AddPlaceForm extends Component {
           </div>
 
           <div>
-            <label>Image</label>
-            <input
-              name="image"
-              type="file"
-            />
-          </div>
-
-          <div>
             <label>Description</label>
             <textarea
               name="description"
               value={description}
               onChange={this.handleChange}
+            />
+          </div>
+
+          <div>
+            <label className="image-label">Image</label>
+            <input
+              name="image"
+              type="file"
             />
           </div>
 

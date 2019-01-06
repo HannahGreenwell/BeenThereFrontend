@@ -23,6 +23,7 @@ class AddPlaceSearch extends Component {
 
   // Handle click on Google Places dropdown suggestion
   handleSelectSuggest = (geocodedPrediction, originalPrediction) => {
+    console.log(geocodedPrediction.formatted_address);
     this.setState({
       search: '',
       value: originalPrediction.description,
