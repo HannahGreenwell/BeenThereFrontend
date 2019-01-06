@@ -11,6 +11,7 @@ Been There is a map based app for people who are bursting with travel recommenda
 - Create your very own Been There account and map
 - See all your favourite places and their details on your Been There map
 - Add new places to your Been There map
+- Edit and delete your saved places
 
 ### Front-End Built With
 - React.js
@@ -25,14 +26,20 @@ Been There is a map based app for people who are bursting with travel recommenda
 - react-google-places-suggest
 
 ### Known Bugs
-- Add new place form still displaying after adding a second place
-- Map default centre is hard-coded
+- Error occurs when submitting a new place with no image
 
 ### To Do
-- Edit saved places
+- Improve image upload UI
+- Improve map UI
 - Share maps with friends
+- Save 'wishlist' places
+- Save custom places
 - Account page
-- TESTING
+- Password confirmation
+- Mobile responsive layout
+- Accessibility
+- Testing
+
 
 ### Screenshot
 ![Been There Screenshot](./been-there-screenshot.jpeg)

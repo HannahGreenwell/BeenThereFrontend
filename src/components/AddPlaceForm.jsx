@@ -95,7 +95,7 @@ class AddPlaceForm extends Component {
               <option value="See & Do">See &amp; Do</option>
               <option value="Food & Drink">Food &amp; Drink</option>
               <option value="Nightlife">Nightlife</option>
-              <option value="Shop">Shop</option>
+              <option value="Shopping">Shopping</option>
             </select>
           </div>
 
