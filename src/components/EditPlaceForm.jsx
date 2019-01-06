@@ -7,6 +7,7 @@ class EditPlaceForm extends Component {
 
     this.state = {
       name: '',
+      address: '',
       category: 'See & Do',
       description: '',
       lat: '',
@@ -15,10 +16,11 @@ class EditPlaceForm extends Component {
   }
 
   componentDidMount() {
-    const {name, category, description, lat, lng} = this.props.selectedPlace;
+    const {name, address, category, description, lat, lng} = this.props.selectedPlace;
 
     this.setState({
       name,
+      address,
       category,
       description,
       lat,
@@ -36,8 +38,8 @@ class EditPlaceForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const {name, category, description, lat, lng} = this.state;
-    const formData = {name, category, description, lat, lng};
+    const {name, address, category, description, lat, lng} = this.state;
+    const formData = {name, address, category, description, lat, lng};
     this.props.onSubmit(formData);
   }
 
@@ -50,7 +52,7 @@ class EditPlaceForm extends Component {
 
   render() {
 
-    const {name, category, description, lat, lng} = this.state;
+    const {name, address, category, description, lat, lng} = this.state;
 
     return (
       <div>
@@ -68,6 +70,15 @@ class EditPlaceForm extends Component {
               name="name"
               type="text"
               value={name}
+              onChange={this.handleChange} />
+          </div>
+
+          <div>
+            <label>Address</label>
+            <input
+              name="address"
+              type="text"
+              value={address}
               onChange={this.handleChange} />
           </div>
 
