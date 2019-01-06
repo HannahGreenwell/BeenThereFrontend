@@ -27,6 +27,7 @@ Been There is a map based app for people who are bursting with travel recommenda
 
 ### Known Bugs
 - Error occurs when submitting a new place with no image
+- Map default center is hard-coded
 
 ### To Do
 - Improve image upload UI
@@ -42,4 +43,4 @@ Been There is a map based app for people who are bursting with travel recommenda
 
 
 ### Screenshot
-![Been There Screenshot](./been-there-screenshot.jpeg)
+![Been There Screenshot](./been-there.jpg)
