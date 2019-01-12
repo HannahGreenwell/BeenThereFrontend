@@ -14,8 +14,6 @@ class AddPlaceForm extends Component {
       lat: '',
       lng: ''
     };
-
-    this.imageInput = React.createRef();
   }
 
   componentDidMount() {
@@ -39,10 +37,9 @@ class AddPlaceForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.imageInput);
 
-    // const formData  = new FormData(event.target);
-    // this.props.onSubmit(formData);
+    const formData  = new FormData(event.target);
+    this.props.onSubmit(formData);
   }
 
   render() {
@@ -103,7 +100,6 @@ class AddPlaceForm extends Component {
             <input
               name="image"
               type="file"
-              ref={this.imageInput}
             />
           </div>
 

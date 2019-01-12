@@ -13,7 +13,8 @@ import DeletePlaceConfirm from './components/DeletePlaceConfirm'
 import LoadingModal from './components/LoadingModal'
 
 
-const URL = 'http://www.localhost:3000/user';
+const BASE_URL = 'http://www.localhost:3000';
+// const BASE_URL = '';
 // const URL = '/user';
 
 class App extends Component {
@@ -61,7 +62,7 @@ class App extends Component {
 
   // Makes an axios request to the backend for the user's saved places
   fetchPlaces = () => {
-    axios.get(`${URL}/places`)
+    axios.get(`${BASE_URL}/map/places`)
     .then(response => {
       // Save the returned pins array into state
       // Note: users with no pins will return an empty array
@@ -130,7 +131,7 @@ class App extends Component {
     });
 
     // Make axios post request to backend to create new place
-    axios.post(`${URL}/place`, formData)
+    axios.post(`${BASE_URL}/map/place`, formData)
     .then(response => {
       const place = response.data;
       // Set the returned place into state and hide the modal
@@ -159,7 +160,7 @@ class App extends Component {
 
     const {lat, lng} = this.state.selectedPlace;
 
-    axios.put(`${URL}/place/${lat}/${lng}`, formData)
+    axios.put(`${BASE_URL}/map/place/${lat}/${lng}`, formData)
     .then(response => {
       const updatedPlaces = this.state.places.filter(p => p.lat !== lat && p.lng !== lng);
       const updatedPlace = response.data;
@@ -183,7 +184,7 @@ class App extends Component {
   handleDeletePlaceConfirm = () => {
     const {lat, lng} = this.state.selectedPlace;
 
-    axios.delete(`${URL}/place/${lat}/${lng}`)
+    axios.delete(`${BASE_URL}/map/place/${lat}/${lng}`)
     .then(response => {
       const updatedPlaces = this.state.places.filter(p => p.lat !== lat && p.lng !== lng);
       this.setState({

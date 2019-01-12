@@ -4,8 +4,9 @@ import axios from 'axios';
 import HeaderProtected from '../Header/HeaderProtected';
 import './Signin.css';
 
+const BASE_URL = 'http://www.localhost:3000';
+// const BASE_URL = '';
 // const URL = '/user';
-const URL = 'http://www.localhost:3000/user';
 
 class Signup extends Component {
 
@@ -38,7 +39,7 @@ class Signup extends Component {
     event.preventDefault();
 
     // Make an axios post request to the backend to sign up
-    axios.post(`${URL}/signup`,
+    axios.post(`${BASE_URL}/user/signup`,
       {
         email: this.state.emailInput,
         password: this.state.passwordInput
