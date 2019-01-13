@@ -6,7 +6,6 @@ import './Signin.css';
 
 const BASE_URL = 'http://www.localhost:3000';
 // const BASE_URL = '';
-// const URL = '/user';
 
 class Signup extends Component {
 
@@ -14,37 +13,27 @@ class Signup extends Component {
     super(props);
 
     this.state = {
-      emailInput: '',
-      passwordInput: '',
+      email: '',
+      password: '',
       error: ''
     };
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // Handle email field input
-  handleEmailChange(event) {
-    this.setState({emailInput: event.target.value});
-  }
+  handleChange = event => {
+    const {name, value} = event.target;
 
-  // Handle password field input\
-  handlePasswordChange(event) {
-    this.setState({passwordInput: event.target.value});
+    this.setState({
+      [name]: value
+    });
   }
 
   // Sign up button submit handler
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
+    const {email, password} = this.state;
 
     // Make an axios post request to the backend to sign up
-    axios.post(`${BASE_URL}/user/signup`,
-      {
-        email: this.state.emailInput,
-        password: this.state.passwordInput
-      }
-    )
+    axios.post(`${BASE_URL}/user/signup`, {email, password})
     .then(response => {
       // If the signin was successful, save the returned JWT into the authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
@@ -64,6 +53,9 @@ class Signup extends Component {
   }
 
   render() {
+
+    const {email, password, error} = this.state;
+
     return (
       <div className="login-container">
         <HeaderProtected />
@@ -76,22 +68,24 @@ class Signup extends Component {
               <label>Email</label>
               <input
                 type="email"
-                value={this.state.emailInput}
-                onChange={this.handleEmailChange} />
+                name="email"
+                value={email}
+                onChange={this.handleChange} />
             </div>
 
             <div>
               <label>Password</label>
               <input
                 type="password"
-                value={this.state.passwordInput}
-                onChange={this.handlePasswordChange} />
+                name="password"
+                value={password}
+                onChange={this.handleChange} />
             </div>
 
             <input type="submit" value="Sign Up" />
           </form>
 
-          <p className="error-msg">{this.state.error}</p>
+          <p className="error-msg">{error}</p>
         </div>
       </div>
     );
